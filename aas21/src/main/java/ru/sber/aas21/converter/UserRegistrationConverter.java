@@ -19,12 +19,15 @@ public class UserRegistrationConverter implements Converter<UserRegistrationRequ
         user.setSberId(mappingContext.getSource().getSberId());
         user.setNickname(mappingContext.getSource().getNickname());
         user.setEmail(mappingContext.getSource().getEmail());
+        user.setPassword(mappingContext.getSource().getPassword());
+        user.setFirstName(mappingContext.getSource().getFirstName());
         user.setLastName(mappingContext.getSource().getLastName());
         user.setSurname(mappingContext.getSource().getSurname());
         user.setInn(mappingContext.getSource().getInn());
         user.setPassportNumber(mappingContext.getSource().getPassportNumber());
         user.setGender(mappingContext.getSource().getGender());
         user.setBirthDay(mappingContext.getSource().getBirthDay());
+        user.setPhoneNumber(mappingContext.getSource().getPhoneNumber());
         return user;
     }
 }
