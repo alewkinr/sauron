@@ -60,6 +60,6 @@ public class UserEntity extends BaseEntity<Long> {
     @Column
     private String city;
 
-    @Column
+    @Column(unique = true)
     private String sberId;
 }

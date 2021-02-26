@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 @Service
 public class UserService {
 
+    private final SberIdService sberIdService;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
@@ -102,5 +103,13 @@ public class UserService {
         UserEntity saved = userRepository.save(userEntity);
         userEntity.setSberId(setSberIdRequest.getSberId());
         return modelMapper.map(saved, UserDto.class);
+    }
+
+    public String signInBySberId(String sberId) {
+        if (!sberIdService.isValid(sberId)) {
+            throw new CustomException("Not Allowed. Invalid sberId", HttpStatus.FORBIDDEN);
+        }
+        UserEntity user = userRepository.findBySberId(sberId).orElseThrow(() -> new CustomException("User not found", HttpStatus.NOT_FOUND));
+        return jwtTokenProvider.createToken(user.getUsername(), modelMapper.map(user, UserDto.class));
     }
 }
