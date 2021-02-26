@@ -40,7 +40,7 @@ public class SberCloudService {
             request.setMethod("GET");
 
             //Set a request URL in the format of https://{Endpoint}/{URI}.
-            request.setUrl("https://" + sberCloudConfig.getEndpoint() + "/v1/" + sberCloudConfig.getProjectId() + "/vpcs?limit=2");
+            request.setUrl("https://" + sberCloudConfig.getCloudEyeEndpoint() + "/V1.0/" + sberCloudConfig.getProjectId() + "/metrics");
 
             //Add header parameters, for example, x-domain-id for invoking a global service and x-project-id for invoking a project-level service.
             request.addHeader("Content-Type", "application/json");
