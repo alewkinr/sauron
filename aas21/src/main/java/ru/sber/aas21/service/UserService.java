@@ -13,6 +13,7 @@ import ru.sber.aas21.domain.model.UserEntity;
 import ru.sber.aas21.domain.repository.UserRepository;
 import ru.sber.aas21.exception.CustomException;
 import ru.sber.aas21.model.UserDto;
+import ru.sber.aas21.model.request.SetSberIdRequest;
 import ru.sber.aas21.model.request.UserRegistrationRequest;
 
 import javax.servlet.http.HttpServletRequest;
@@ -93,4 +94,13 @@ public class UserService {
         return userRepository.findByUsername(username).orElseThrow(() -> new CustomException("User not found", HttpStatus.NOT_FOUND));
     }
 
+    public UserDto setSberId(SetSberIdRequest setSberIdRequest) {
+        UserEntity userEntity = userRepository.findByUsername(setSberIdRequest.getUsername()).orElseThrow(() -> new CustomException("User not found", HttpStatus.NOT_FOUND));
+        if (!getCurrentUsername().equals(userEntity.getUsername())) {
+            throw new CustomException("Not Allowed", HttpStatus.FORBIDDEN);
+        }
+        UserEntity saved = userRepository.save(userEntity);
+        userEntity.setSberId(setSberIdRequest.getSberId());
+        return modelMapper.map(saved, UserDto.class);
+    }
 }

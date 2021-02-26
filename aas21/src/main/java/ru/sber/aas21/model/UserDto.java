@@ -36,4 +36,6 @@ public class UserDto {
     private Gender gender;
 
     private String birthDay;
+
+    private String sberId;
 }

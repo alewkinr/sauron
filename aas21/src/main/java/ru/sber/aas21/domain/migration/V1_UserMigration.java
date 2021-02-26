@@ -44,6 +44,7 @@ public class V1_UserMigration implements Migration {
         userRegistrationRequest.setSurname("Пользователь");
         userRegistrationRequest.setLastName("Системы");
         userRegistrationRequest.setPhoneNumber("+7-999-999-99-99");
+        userRegistrationRequest.setSberId("SBER_ID");
         userService.signUp(userRegistrationRequest);
 
         userRegistrationRequest = new UserRegistrationRequest();

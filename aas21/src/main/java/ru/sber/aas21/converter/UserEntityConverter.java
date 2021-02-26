@@ -34,6 +34,7 @@ public class UserEntityConverter implements Converter<UserEntity, UserDto> {
         userDto.setPassportNumber(mappingContext.getSource().getPassportNumber());
         userDto.setGender(mappingContext.getSource().getGender());
         userDto.setBirthDay(Optional.ofNullable(mappingContext.getSource().getBirthDay()).map(localDate -> localDate.format(DateTimeFormatter.ofPattern(birthdayFormat))).orElse(null));
+        userDto.setSberId(mappingContext.getSource().getSberId());
 
         return userDto;
     }

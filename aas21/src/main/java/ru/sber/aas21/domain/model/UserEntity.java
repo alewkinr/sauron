@@ -59,4 +59,7 @@ public class UserEntity extends BaseEntity<Long> {
 
     @Column
     private String city;
+
+    @Column
+    private String sberId;
 }

@@ -35,4 +35,6 @@ public class UserRegistrationRequest {
     private Gender gender;
 
     private LocalDate birthDay;
+
+    private String sberId;
 }

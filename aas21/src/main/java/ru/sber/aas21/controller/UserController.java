@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.sber.aas21.model.UserDto;
+import ru.sber.aas21.model.request.SetSberIdRequest;
 import ru.sber.aas21.model.request.SignInRequest;
 import ru.sber.aas21.model.request.UserRegistrationRequest;
 import ru.sber.aas21.service.UserService;
@@ -35,13 +36,19 @@ public class UserController {
         return ResponseEntity.ok(userService.whoAmI(request));
     }
 
-//    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("isAuthenticated()")
+    @PutMapping(value = "/user/sberId")
+    public ResponseEntity<UserDto> setSberId(@RequestBody SetSberIdRequest setSberIdRequest) {
+        return ResponseEntity.ok(userService.setSberId(setSberIdRequest));
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/user")
     public ResponseEntity<UserDto> getUserByUsername(@RequestParam(value = "username") String username) {
         return ResponseEntity.ok(userService.search(username));
     }
 
-//    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping
     public List<UserDto> allUsers() {
         return userService.findAll();
