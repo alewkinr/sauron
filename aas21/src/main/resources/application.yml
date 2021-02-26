@@ -1,18 +1,19 @@
 server:
-  port: 8080
+  port: 80
 
 spring:
   datasource:
     hikari:
       connectionTimeout: 20000
       maximumPoolSize: 5
-    url: jdbc:postgresql://localhost:5432/sber
-    username: postgres
-    password: root
+    url: jdbc:postgresql://37.230.195.95:5432/sber
+    username: root
+    password: 482tkz6bvvylv4nqPSz8L31zHQ
+
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQL95Dialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
   liquibase:
     enabled: false
 
@@ -26,4 +27,5 @@ sber:
     secret: fKdRahYKIr45Es1ekoBrUCf3VsAhl4nM7baI5oYq
     username: hackathon101
     projectId: 0b9654864a0024ab2f81c01da83988dc
+    api-version: V1.0
     cloudEye-endpoint: ces.ru-moscow-1.hc.sbercloud.ru

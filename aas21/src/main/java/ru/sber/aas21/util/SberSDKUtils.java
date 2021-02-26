@@ -1,4 +1,4 @@
-package ru.sber.aas21.service;
+package ru.sber.aas21.util;
 
 import com.cloud.apigateway.sdk.utils.Client;
 import com.cloud.apigateway.sdk.utils.Request;
@@ -10,23 +10,24 @@ import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Component;
 import ru.sber.aas21.configuration.SberCloudConfig;
 
-import javax.annotation.PostConstruct;
 import java.io.IOException;
 
-
 @RequiredArgsConstructor
-@Transactional
-@Service
-public class SberCloudService {
+@Component
+public class SberSDKUtils {
+
+    public enum METHOD {
+        GET, POST, PUT, DELETE
+    }
+
+    private static final String HTTPS = "https://";
 
     private final SberCloudConfig sberCloudConfig;
 
-    @PostConstruct
-    public void main() {
+    public void call() {
         //Create a new request.
         Request request = new Request();
         try {
@@ -40,7 +41,7 @@ public class SberCloudService {
             request.setMethod("GET");
 
             //Set a request URL in the format of https://{Endpoint}/{URI}.
-            request.setUrl("https://" + sberCloudConfig.getCloudEyeEndpoint() + "/V1.0/" + sberCloudConfig.getProjectId() + "/metrics");
+            request.setUrl("https://" + sberCloudConfig.getCloudEyeEndpoint() + "/" + sberCloudConfig.getApiVersion() + "/" + sberCloudConfig.getProjectId() + "/metrics");
 
             //Add header parameters, for example, x-domain-id for invoking a global service and x-project-id for invoking a project-level service.
             request.addHeader("Content-Type", "application/json");
@@ -88,4 +89,5 @@ public class SberCloudService {
             }
         }
     }
+
 }

@@ -14,5 +14,6 @@ public class SberCloudConfig {
     private String secret;
     private String username;
     private String projectId;
+    private String apiVersion;
     private String cloudEyeEndpoint;
 }
