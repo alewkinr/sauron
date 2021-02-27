@@ -2,11 +2,24 @@ import React from "react";
 
 import { ChartView } from "./ChartView";
 
+export enum ChartTypes {
+  line,
+  bar,
+  radar,
+  pie,
+  parea,
+  bubble,
+  scatter,
+  area,
+  mixed,
+}
+
 export interface ChartData {
-  somedata: string;
+  line: Array<number>;
 }
 
 export interface ChartState {
+  type: ChartTypes;
   data: ChartData;
   width?: number;
   height?: number;
