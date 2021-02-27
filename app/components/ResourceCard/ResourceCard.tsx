@@ -3,7 +3,7 @@ import React from "react";
 import { ResourceCardView } from "./ResourceCardView";
 
 export interface Resource {
-  title: string;
+  id: string;
   amount: number;
   alerts: number;
 }
