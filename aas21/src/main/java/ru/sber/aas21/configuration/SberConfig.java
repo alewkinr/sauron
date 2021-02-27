@@ -15,7 +15,7 @@ public class SberConfig {
     }
 
     @Bean
-    public CloudEyeFacade cloudEyeService(SberSDKUtils sberSDKUtils, SberCloudConfig sberCloudConfig){
-        return new CloudEyeFacade(sberSDKUtils, sberCloudConfig);
+    public CloudEyeFacade cloudEyeService(SberSDKUtils sberSDKUtils, SberCloudConfig sberCloudConfig, ObjectMapper objectMapper) {
+        return new CloudEyeFacade(sberSDKUtils, sberCloudConfig, objectMapper);
     }
 }
