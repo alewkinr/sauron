@@ -14,21 +14,21 @@ export default function TabTwoScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tab Two</Text>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
-      <EditScreenInfo path="/screens/TabTwoScreen.tsx" />
-      <Chart
-        type={ChartTypes.line}
-        labels={["1", "2", "3", "0"]}
-        title={"my chart"}
-        fill={false}
-        data={data}
-        width={400}
-        height={200}
-      />
+      {/*<View*/}
+      {/*  style={styles.separator}*/}
+      {/*  lightColor="#eee"*/}
+      {/*  darkColor="rgba(255,255,255,0.1)"*/}
+      {/*/>*/}
+      {/*<EditScreenInfo path="/screens/TabTwoScreen.tsx" />*/}
+      {/*<Chart*/}
+      {/*  type={ChartTypes.line}*/}
+      {/*  labels={["1", "2", "3", "0"]}*/}
+      {/*  title={"my chart"}*/}
+      {/*  fill={false}*/}
+      {/*  data={data}*/}
+      {/*  width={400}*/}
+      {/*  height={200}*/}
+      {/*/>*/}
     </View>
   );
 }

@@ -7,6 +7,7 @@ export enum ChartTypes {
   bar,
   radar,
   pie,
+  doughnut,
   parea,
   bubble,
   scatter,
@@ -16,6 +17,7 @@ export enum ChartTypes {
 
 export interface ChartData {
   line?: Array<number>;
+  doughnut?: Array<number>;
 }
 
 export interface ChartState {
