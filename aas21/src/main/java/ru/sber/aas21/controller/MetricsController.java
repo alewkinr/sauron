@@ -24,14 +24,6 @@ public class MetricsController {
     private final CloudEyeFacade cloudEyeFacade;
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
 
-//    @PostConstruct
-    public void init() {
-        MetricData metricData = cloudEyeFacade.getMetricData("SYS.ECS", "disk_write_requests_rate", 0,
-                "instance_id", "cc49bc2b-20ff-4a7d-bfe3-56fc061b30b0",
-                LocalDateTime.now().minusDays(1), LocalDateTime.now(), 1200L, "min");
-        System.out.println();
-    }
-
     @GetMapping
     public ResponseEntity<Metrics> getAllMetrics() {
         return ResponseEntity.ok(cloudEyeFacade.getAllMetrics());
