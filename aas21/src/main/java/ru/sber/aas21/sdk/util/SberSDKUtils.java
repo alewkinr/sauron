@@ -1,4 +1,4 @@
-package ru.sber.aas21.util;
+package ru.sber.aas21.sdk.util;
 
 import com.cloud.apigateway.sdk.utils.Client;
 import com.cloud.apigateway.sdk.utils.Request;
@@ -13,14 +13,12 @@ import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.springframework.stereotype.Component;
 import ru.sber.aas21.configuration.SberCloudConfig;
 
 import java.io.IOException;
 
 @Slf4j
 @RequiredArgsConstructor
-@Component
 public class SberSDKUtils {
 
     public enum Method {

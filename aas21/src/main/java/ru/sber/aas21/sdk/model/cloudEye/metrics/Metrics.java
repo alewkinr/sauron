@@ -1,4 +1,4 @@
-package ru.sber.aas21.model.sber;
+package ru.sber.aas21.sdk.model.cloudEye.metrics;
 
 import java.util.List;
 
