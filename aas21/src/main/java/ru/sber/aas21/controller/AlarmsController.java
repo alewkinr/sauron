@@ -8,7 +8,7 @@ import ru.sber.aas21.sdk.model.cloudEye.alarms.AlarmId;
 import ru.sber.aas21.sdk.model.cloudEye.alarms.Alarms;
 import ru.sber.aas21.sdk.model.cloudEye.alarms.EnableAlarmAction;
 import ru.sber.aas21.sdk.model.cloudEye.alarms.MetricAlarm;
-import ru.sber.aas21.sdk.service.CloudEyeFacade;
+import ru.sber.aas21.sdk.facade.CloudEyeFacade;
 
 import javax.annotation.PostConstruct;
 

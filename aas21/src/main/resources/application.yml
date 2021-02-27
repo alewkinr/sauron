@@ -29,3 +29,6 @@ sber:
     projectId: 0b9654864a0024ab2f81c01da83988dc
     api-version: V1.0
     cloudEye-endpoint: ces.ru-moscow-1.hc.sbercloud.ru
+    cloudTrace-endpoint: cts.ru-moscow-1.hc.sbercloud.ru
+    applicationOperationManagement-endpoint: aom.ru-moscow-1.hc.sbercloud.ru
+    applicationPerfomanceManagement-endpoint: apm.ru-moscow-1.hc.sbercloud.ru

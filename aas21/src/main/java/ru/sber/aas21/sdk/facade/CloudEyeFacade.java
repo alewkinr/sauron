@@ -1,4 +1,4 @@
-package ru.sber.aas21.sdk.service;
+package ru.sber.aas21.sdk.facade;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

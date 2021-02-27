@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.sber.aas21.sdk.model.cloudEye.metrics.Metrics;
 import ru.sber.aas21.sdk.model.cloudEye.metrics.data.MetricData;
-import ru.sber.aas21.sdk.service.CloudEyeFacade;
+import ru.sber.aas21.sdk.facade.CloudEyeFacade;
 
-import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 

@@ -2,10 +2,14 @@ package ru.sber.aas21.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.sber.aas21.sdk.model.apm.QueryList;
 import ru.sber.aas21.sdk.model.cloudEye.alarms.Alarms;
 import ru.sber.aas21.sdk.model.cloudEye.metrics.Metrics;
 import ru.sber.aas21.sdk.model.cloudEye.metrics.data.MetricData;
-import ru.sber.aas21.sdk.service.CloudEyeFacade;
+import ru.sber.aas21.sdk.facade.ApplicationOperationManagementFacade;
+import ru.sber.aas21.sdk.facade.ApplicationPerformanceManagementFacade;
+import ru.sber.aas21.sdk.facade.CloudEyeFacade;
+import ru.sber.aas21.sdk.facade.CloudTraceFacade;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
@@ -15,10 +19,14 @@ import java.time.LocalDateTime;
 public class TestService {
 
     private final CloudEyeFacade cloudEyeFacade;
+    private final CloudTraceFacade cloudTraceFacade;
+    private final ApplicationOperationManagementFacade aomFacade;
+    private final ApplicationPerformanceManagementFacade apmFacade;
 
     @PostConstruct
     public void init() {
         cloudEyeMetrics();
+        apmTest();
     }
 
     private void cloudEyeMetrics() {
@@ -28,6 +36,12 @@ public class TestService {
         System.out.println();
         Metrics allMetrics = cloudEyeFacade.getAllMetrics();
         Alarms alarms = cloudEyeFacade.getAlarms();
+        System.out.println();
+    }
+
+    private void apmTest(){
+        QueryList applications = apmFacade.getApplications();
+        QueryList services = apmFacade.getServices();
         System.out.println();
     }
 }
