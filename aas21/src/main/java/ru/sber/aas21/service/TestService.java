@@ -28,21 +28,21 @@ public class TestService {
 
     @PostConstruct
     public void init() {
-        try {
-            cloudEyeMetrics();
-        } catch (Throwable t) {
-            log.error(t.getMessage());
-        }
-        try {
-            apmTest();
-        } catch (Throwable t) {
-            log.error(t.getMessage());
-        }
-        try {
-            aomTest();
-        } catch (Throwable t) {
-            log.error(t.getMessage());
-        }
+//        try {
+//            cloudEyeMetrics();
+//        } catch (Throwable t) {
+//            log.error(t.getMessage());
+//        }
+//        try {
+//            apmTest();
+//        } catch (Throwable t) {
+//            log.error(t.getMessage());
+//        }
+//        try {
+//            aomTest();
+//        } catch (Throwable t) {
+//            log.error(t.getMessage());
+//        }
     }
 
     private void cloudEyeMetrics() {
@@ -57,6 +57,7 @@ public class TestService {
 
     private void apmTest() {
         QueryList applications = apmFacade.getMonitorGroups();
+        apmFacade.getServices("0b9654864a0024ab2f81c01da83988dc");
         System.out.println();
     }
 
