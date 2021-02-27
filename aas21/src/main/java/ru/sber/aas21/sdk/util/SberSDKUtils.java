@@ -18,8 +18,8 @@ import ru.sber.aas21.configuration.SberCloudConfig;
 import ru.sber.aas21.exception.CustomException;
 
 import java.io.IOException;
-import java.util.Optional;
 
+// TODO this is based on example from sber-java-sdk. It should be refactored
 @Slf4j
 @RequiredArgsConstructor
 public class SberSDKUtils {
@@ -37,12 +37,12 @@ public class SberSDKUtils {
 
     public <T> T callForObject(String serviceEndpoint, String appendixUrl, Method method, String body, Class<T> resultClass) throws JsonProcessingException {
         String call = call(serviceEndpoint, appendixUrl, method, body);
-        return objectMapper.readValue(Optional.ofNullable(call).orElse("{}"), resultClass);
+        return objectMapper.readValue(call, resultClass);
     }
 
     public <T> T callForObject(String serviceEndpoint, String appendixUrl, Method method, Class<T> resultClass) throws JsonProcessingException {
         String call = call(serviceEndpoint, appendixUrl, method);
-        return objectMapper.readValue(Optional.ofNullable(call).orElse("{}"), resultClass);
+        return objectMapper.readValue(call, resultClass);
     }
 
     public String call(String serviceEndpoint, String appendixUrl, Method method) {
@@ -117,6 +117,8 @@ public class SberSDKUtils {
                 result = EntityUtils.toString(resEntity, "UTF-8");
             }
 
+        } catch (CustomException customException) {
+            throw customException;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
