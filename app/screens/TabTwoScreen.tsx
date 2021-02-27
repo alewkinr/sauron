@@ -5,6 +5,7 @@ import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
 import { Chart, ChartData, ChartTypes } from "../components/Chart";
 
+
 export default function TabTwoScreen() {
   const data = {
     line: [1, 2, 3, 0],
