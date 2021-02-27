@@ -5,9 +5,8 @@ import { Text, TextProps } from "./Themed";
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: "SB Sans Display",
+    fontFamily: "SBSansDisplayBold",
     fontStyle: "normal",
-    fontWeight: "600",
     fontSize: 16,
     lineHeight: 21,
     display: "flex",

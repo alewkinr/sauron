@@ -11,10 +11,9 @@ import {
 import BottomSheet from "reanimated-bottom-sheet";
 import BottomSheetBehavior from "reanimated-bottom-sheet";
 import { LinearGradient } from "expo-linear-gradient";
-
-import bcg from "../assets/images/splash.png";
-import { AuthContext } from "../context/AuthContext";
-import SberIcon from "../components/SberIcon";
+import bcg from '../assets/images/splash.png';
+import { AuthContext } from '../context/AuthContext';
+import SberIcon from '../components/SberIcon';
 
 export const LoginScreen = () => {
   const [username, setUsername] = useState("");
@@ -100,9 +99,7 @@ export const LoginScreen = () => {
             style={{ position: "absolute", right: 0 }}
             onPress={() => setEyeIsNotOpen(!eyeIsNotOpen)}
           >
-            <Text style={{ fontSize: 18, color: "#07E897", width: "100%" }}>
-              ghjgjg
-            </Text>
+
           </TouchableOpacity>
         </View>
       </View>

@@ -17,13 +17,14 @@ export default function useCachedResources() {
                     ...Ionicons.font,
                     'space-mono': require('../assets/fonts/SpaceMono-Regular.ttf'),
                     'SBSansDisplay': require('../assets/fonts/SBSansDisplay-Regular.ttf'),
+                    'SBSansDisplayBold': require('../assets/fonts/SBSansDisplay-Bold.ttf'),
                 });
             } catch (e) {
                 // We might want to provide this error information to an error reporting service
                 console.warn(e);
             } finally {
                 setLoadingComplete(true);
-                // SplashScreen.hideAsync();
+               // await SplashScreen.hideAsync();
             }
         }
 
