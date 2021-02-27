@@ -1,14 +1,16 @@
 import * as React from 'react';
 import {StyleSheet} from 'react-native';
 import {View, Text} from '../components/Themed';
+import OverviewScreen from "./Overview";
 
 
 export default () => {
     return (
         <View style={styles.container}>
-            <Text style={{fontSize: 20, fontFamily: 'SBSansDisplay'}}>Привет</Text>
-            <Text style={{fontSize: 20}}>Привет</Text>
-            {/*<SortableCards/>*/}
+            {/*<Text style={{fontSize: 20, fontFamily: 'SBSansDisplay'}}>Привет</Text>*/}
+            {/*<Text style={{fontSize: 20}}>Привет</Text>*/}
+            {/*/!*<SortableCards/>*!/*/}
+            <OverviewScreen/>
         </View>
     );
 }
