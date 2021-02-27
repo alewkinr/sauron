@@ -1,3 +1,2 @@
-import { Chart, ChartData } from "./Chart";
-
-export { Chart, ChartData };
+import { Chart, ChartData, ChartTypes } from "./Chart";
+export { Chart, ChartData, ChartTypes };

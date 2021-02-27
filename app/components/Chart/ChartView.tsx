@@ -17,11 +17,24 @@ export function ChartView(props: ChartProps): JSX.Element {
       return (
         <View style={styles.container}>
           <Line
-            data={props.data.line}
+            data={{
+              labels: props.labels,
+              datasets: [
+                {
+                  label: props.title,
+                  data: props.data.line,
+                  fill: props.fill === true,
+                  backgroundColor: "black", // todo: set default color
+                  pointHoverRadius: 4,
+                  borderWidth: 2,
+                  radius: 2,
+                },
+              ],
+            }}
             width={props.width}
             height={props.height}
+            options={customSizeOpt(props)}
           />
-          options={customSizeOpt(props)}
         </View>
       );
     case ChartTypes.bar:
