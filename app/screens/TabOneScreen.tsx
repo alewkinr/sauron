@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {StyleSheet} from 'react-native';
-import {View, Text} from '../components/Themed';
-import OverviewScreen from "./Overview";
+import {View} from '../components/Themed';
+import OverviewScreen from './Overview';
 
 
 export default () => {
