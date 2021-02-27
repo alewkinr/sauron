@@ -20,28 +20,39 @@ export default function OverviewScreen() {
       <Text>
         Ни для одного из ресурсов не сработало никаких сигналов тревоги
       </Text>
-      {/*<ResourceCardView*/}
-      {/*  title={"test"}*/}
-      {/*  resources={[*/}
-      {/*    {*/}
-      {/*      id: "1",*/}
-      {/*      amount: 2,*/}
-      {/*      alerts: 0,*/}
-      {/*    },*/}
-      {/*  ]}*/}
-      {/*/>*/}
-      <Chart
-        type={ChartTypes.line}
-        height={200}
-        data={{
-          labels: ["1", "2", "3"],
-          datasets: [
-            {
-              data: [1, 2, 3, 4],
-            },
-          ],
-        }}
+      <ResourceCardView
+        title={"test"}
+        isHorizontal={true}
+        resources={[
+          {
+            id: "1",
+            amount: 2,
+            alerts: 4,
+          },
+          {
+            id: "2",
+            amount: 2,
+            alerts: 4,
+          },
+          {
+            id: "3",
+            amount: 2,
+            alerts: 4,
+          },
+        ]}
       />
+      {/*<Chart*/}
+      {/*  type={ChartTypes.line}*/}
+      {/*  height={200}*/}
+      {/*  data={{*/}
+      {/*    labels: ["1", "2", "3"],*/}
+      {/*    datasets: [*/}
+      {/*      {*/}
+      {/*        data: [1, 2, 3, 4],*/}
+      {/*      },*/}
+      {/*    ],*/}
+      {/*  }}*/}
+      {/*/>*/}
     </View>
   );
 }
