@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
+    /* Для того, чтобы разрешить импорт React из react */
+    "esModuleInterop": true,
     "jsx": "react-native",
     "lib": [
       "dom",
@@ -36,7 +38,12 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": [
+    "./**/*.ts",
+    "./**/*.tsx",
     "node_modules/react-native-redash/lib/typescript/v1/index.d.ts",
     "App.tsx"
+  ],
+  "exclude": [
+    "./**/__testes__/**"
   ]
 }

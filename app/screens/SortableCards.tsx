@@ -5,6 +5,7 @@ import {Value} from "react-native-reanimated";
 import {BLOCK_COLUMNS, BLOCK_SIZE_H, blocks} from "../components/Blocks";
 import {useContext} from "react";
 import {AuthContext} from "../context/AuthContext";
+import SortableBlock from "../components/SortableBlock";
 
 const styles = StyleSheet.create({
     container: {
@@ -26,9 +27,9 @@ export default () => {
                 style={styles.buttonStyle}>
                 <Text style={{fontSize: 16, color: '#3E03E9'}}>Войти</Text>
             </TouchableOpacity>
-            {/*{blocks.map((block, index) => (*/}
-            {/*    // <SortableBlock key={block.id} {...{ block, index, offsets }} />*/}
-            {/*))}*/}
+            {blocks.map((block, index) => (
+                <SortableBlock key={block.id} {...{ block, index, offsets }} />
+            ))}
 
         </View>
     )

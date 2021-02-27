@@ -32,6 +32,8 @@ public class UserRegistrationRequest {
 
     private String passportNumber;
 
+    private String city;
+
     private Gender gender;
 
     private LocalDate birthDay;

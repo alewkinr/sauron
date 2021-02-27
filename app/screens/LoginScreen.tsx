@@ -1,8 +1,7 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
 import {View, TextInput, StyleSheet, TouchableOpacity, Image, Text} from "react-native";
 import {AuthContext} from "../context/AuthContext";
-// import {LinearGradient} from 'expo-linear-gradient';
-import bcg from '../assets/images/splash.png';
+import bcg from "/assets/images/splash.png";
 import {Dimensions} from "react-native";
 import BottomSheet from 'reanimated-bottom-sheet';
 import BottomSheetBehavior from "reanimated-bottom-sheet";

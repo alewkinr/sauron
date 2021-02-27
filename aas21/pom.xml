@@ -68,6 +68,7 @@
             <version>3.1.1</version>
             <systemPath>${basedir}/libs/java-sdk-core-3.1.1.jar</systemPath>
         </dependency>
+
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
@@ -103,7 +104,6 @@
             <artifactId>okio</artifactId>
             <version>2.10.0</version>
         </dependency>
-
 
         <dependency>
             <groupId>org.springdoc</groupId>
@@ -152,6 +152,7 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                    <includeSystemScope>true</includeSystemScope>
                 </configuration>
             </plugin>
         </plugins>

@@ -36,6 +36,8 @@ public class V1_UserMigration implements Migration {
         userRegistrationRequest.setUsername("user");
         userRegistrationRequest.setPassword("user");
         userRegistrationRequest.setNickname("user");
+        userRegistrationRequest.setCity("None");
+        userRegistrationRequest.setEmail("user@user.us");
         userRegistrationRequest.setInn("123456789");
         userRegistrationRequest.setPassportNumber("6334123123");
         userRegistrationRequest.setBirthDay(LocalDate.now());
