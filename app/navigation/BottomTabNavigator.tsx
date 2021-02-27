@@ -7,7 +7,14 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
-import {BottomTabParamList, TabOneParamList, TabTwoParamList, TabThreeParamList, TabFourParamList, TabFiveParamList} from '../types';
+import {
+    BottomTabParamList,
+    TabOneParamList,
+    TabTwoParamList,
+    TabThreeParamList,
+    TabFourParamList,
+    TabFiveParamList
+} from '../types';
 import TabThreeScreen from "../screens/TabThreeScreen";
 import TabFourScreen from "../screens/TabFourScreen";
 import TabFiveScreen from "../screens/TabFiveScreen";
@@ -19,43 +26,46 @@ export default function BottomTabNavigator() {
 
     return (
         <BottomTab.Navigator
-            initialRouteName="TabOne"
-            tabBarOptions={{activeTintColor: Colors[colorScheme].tint}}>
+            initialRouteName="Статистика"
+            tabBarOptions={{
+                activeTintColor: Colors[colorScheme].tabIconSelected,
+                inactiveTintColor: Colors[colorScheme].tabIconDefault
+            }}>
             <BottomTab.Screen
-                name="TabOne"
+                name="Статистика"
                 component={TabOneNavigator}
                 options={{
-                    tabBarIcon: ({color}) => <TabBarIcon name="ios-code" color={color}/>,
+                    tabBarIcon: ({color}) => <TabBarIcon name="stats-chart" color={color}/>,
                 }}
             />
             <BottomTab.Screen
-                name="TabTwo"
+                name="Сервисы"
                 component={TabTwoNavigator}
                 options={{
-                    tabBarIcon: ({color}) => <TabBarIcon name="ios-code" color={color}/>,
+                    tabBarIcon: ({color}) => <TabBarIcon name="grid" color={color}/>,
                 }}
             />
 
             <BottomTab.Screen
-                name="TabThree"
+                name="События"
                 component={TabThreeNavigator}
                 options={{
-                    tabBarIcon: ({color}) => <TabBarIcon name="ios-code" color={color}/>,
+                    tabBarIcon: ({color}) => <TabBarIcon name="notifications" color={color}/>,
                 }}
             />
 
             <BottomTab.Screen
-                name="TabFour"
+                name="Поддержка"
                 component={TabFourNavigator}
                 options={{
-                    tabBarIcon: ({color}) => <TabBarIcon name="ios-code" color={color}/>,
+                    tabBarIcon: ({color}) => <TabBarIcon name="help-circle" color={color}/>,
                 }}
             />
             <BottomTab.Screen
-                name="TabFive"
+                name="Аккаунт"
                 component={TabFiveNavigator}
                 options={{
-                    tabBarIcon: ({color}) => <TabBarIcon name="ios-code" color={color}/>,
+                    tabBarIcon: ({color}) => <TabBarIcon name="person-circle-outline" color={color}/>,
                 }}
             />
         </BottomTab.Navigator>
@@ -65,7 +75,7 @@ export default function BottomTabNavigator() {
 // You can explore the built-in icon families and icons on the web at:
 // https://icons.expo.fyi/
 function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']; color: string }) {
-    return <Ionicons size={30} style={{marginBottom: -3}} {...props} />;
+    return <Ionicons size={25} style={{marginBottom: -10}} {...props} />;
 }
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
@@ -78,7 +88,7 @@ function TabOneNavigator() {
             <TabOneStack.Screen
                 name="TabOneScreen"
                 component={TabOneScreen}
-                options={{headerTitle: 'Tab One Title'}}
+                options={{headerShown: false}}
             />
         </TabOneStack.Navigator>
     );

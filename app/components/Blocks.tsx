@@ -8,9 +8,12 @@ interface Block {
 }
 
 export const BLOCK_COLUMNS = 1;
-export const BLOCK_SIZE = Dimensions.get("window").width / BLOCK_COLUMNS;
+export const BLOCK_ROWS = 3
+export const BLOCK_SIZE_W = Dimensions.get("window").width / BLOCK_COLUMNS;
+export const BLOCK_SIZE_H = Dimensions.get("window").height / BLOCK_ROWS;
 
-export const block: Block[] = [
+
+export const blocks: Block[] = [
     {
         id: 1,
         name: "First",
@@ -36,13 +39,22 @@ export const block: Block[] = [
 ]
 
 const styles = StyleSheet.create({
-    container: {width: BLOCK_SIZE, height: BLOCK_SIZE},
+    container: {
+        width: BLOCK_SIZE_W,
+        height: BLOCK_SIZE_H,
+        backgroundColor: 'black',
+        borderColor: 'red',
+        borderStyle: 'solid',
+        borderWidth: 10,
+        margin: 40,
+    },
     image: {
         ...StyleSheet.absoluteFillObject,
         width: undefined,
         height: undefined,
         borderRadius: 16,
-        margin: 16,
+        borderWidth: 1,
+
     },
 });
 

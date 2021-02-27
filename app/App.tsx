@@ -6,12 +6,13 @@ import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import store from './store'
-import { AppLoading } from 'expo';
+import AppLoading from 'expo-app-loading';
 
 
 export default function App() {
     const isLoadingComplete = useCachedResources();
     const colorScheme = useColorScheme();
+
 
     if (!isLoadingComplete) {
         return <AppLoading/>;

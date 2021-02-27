@@ -1,12 +1,11 @@
-import React from "react";
 import Animated, {
     Value,
     add,
     cond,
     eq,
-    block,
     set,
     useCode,
+    block,
     multiply,
     divide,
     and,
@@ -19,7 +18,8 @@ import {
     withSpringTransition,
 } from "react-native-redash/src/v1";
 
-import Block, { BLOCK_SIZE, BlockProps } from "./Block";
+import Block, { BLOCK_SIZE_W, BLOCK_SIZE_H, BlockProps } from "./Blocks";
+import * as React from "react";
 
 export const withOffset = ({
                                offset,
@@ -57,8 +57,8 @@ export default ({ block, offsets, index }: SortableCardProps) => {
         state,
     });
     const zIndex = cond(eq(state, State.ACTIVE), 200, cond(moving(y), 100, 1));
-    const offsetX = multiply(round(divide(x, BLOCK_SIZE)), BLOCK_SIZE);
-    const offsetY = multiply(round(divide(y, BLOCK_SIZE)), BLOCK_SIZE);
+    const offsetX = multiply(round(divide(x, BLOCK_SIZE_W)), BLOCK_SIZE_W);
+    const offsetY = multiply(round(divide(y, BLOCK_SIZE_H)), BLOCK_SIZE_H);
     const translateX = withSpringTransition(x, {}, velocity.x);
     const translateY = withSpringTransition(y, {}, velocity.y);
     useCode(
@@ -89,15 +89,15 @@ export default ({ block, offsets, index }: SortableCardProps) => {
                     position: "absolute",
                     top: 0,
                     left: 0,
-                    width: TAB_SIZE,
-                    height: TAB_SIZE,
+                    width: 0,
+                    height: 0,
                     justifyContent: "center",
                     alignItems: "center",
                     transform: [{ translateX }, { translateY }],
                     zIndex,
                 }}
             >
-                <Tab {...{ tab }} />
+                <Block {...{ block }} />
             </Animated.View>
         </PanGestureHandler>
     );
