@@ -1,6 +1,4 @@
-import React from "react";
-
-import { ChartView } from "./ChartView";
+import Colors from "../../constants/Colors";
 
 export enum ChartTypes {
   line,
@@ -15,23 +13,37 @@ export enum ChartTypes {
   mixed,
 }
 
+export interface ChartDataSet {
+  data: Array<number>;
+}
+
 export interface ChartData {
-  line?: Array<number>;
-  doughnut?: Array<number>;
+  labels: Array<string>;
+  datasets: Array<ChartDataSet>;
+}
+
+export interface CharConfig {
+  backgroundColor?: string;
+  backgroundGradientFrom?: string;
+  backgroundGradientTo?: string;
+  fillShadowGradient?: string;
+  fillShadowGradientOpacity?: number;
+  decimalPlaces?: number;
+  color?: CallableFunction;
+  labelColor?: CallableFunction;
+  propsForBackgroundLines: {
+    stroke?: string;
+    strokeWidth?: string;
+    strokeDasharray: [];
+  };
 }
 
 export interface ChartState {
   type: ChartTypes;
   title?: string;
   data: ChartData;
-  labels: Array<string>;
-  width?: number;
-  height?: number;
-  fill?: boolean;
+  height: number;
+  config?: CharConfig;
 }
 
 export type ChartProps = ChartState;
-
-export const Chart: React.FC<ChartProps> = (props) => {
-  return <ChartView {...props} />;
-};
