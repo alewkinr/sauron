@@ -1,5 +1,3 @@
-import Colors from "../../constants/Colors";
-
 export enum ChartTypes {
   line,
   bar,
