@@ -1,19 +1,22 @@
 package ru.sber.aas21.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ru.sber.aas21.sdk.model.apm.QueryList;
-import ru.sber.aas21.sdk.model.cloudEye.alarms.Alarms;
-import ru.sber.aas21.sdk.model.cloudEye.metrics.Metrics;
-import ru.sber.aas21.sdk.model.cloudEye.metrics.data.MetricData;
 import ru.sber.aas21.sdk.facade.AomFacade;
 import ru.sber.aas21.sdk.facade.ApmFacade;
 import ru.sber.aas21.sdk.facade.CloudEyeFacade;
 import ru.sber.aas21.sdk.facade.CloudTraceFacade;
+import ru.sber.aas21.sdk.model.aom.ThresholdRuleList;
+import ru.sber.aas21.sdk.model.apm.QueryList;
+import ru.sber.aas21.sdk.model.cloudEye.alarms.Alarms;
+import ru.sber.aas21.sdk.model.cloudEye.metrics.Metrics;
+import ru.sber.aas21.sdk.model.cloudEye.metrics.data.MetricData;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class TestService {
@@ -25,8 +28,21 @@ public class TestService {
 
     @PostConstruct
     public void init() {
-        cloudEyeMetrics();
-        apmTest();
+        try {
+            cloudEyeMetrics();
+        } catch (Throwable t) {
+            log.error(t.getMessage());
+        }
+        try {
+            apmTest();
+        } catch (Throwable t) {
+            log.error(t.getMessage());
+        }
+        try {
+            aomTest();
+        } catch (Throwable t) {
+            log.error(t.getMessage());
+        }
     }
 
     private void cloudEyeMetrics() {
@@ -39,8 +55,13 @@ public class TestService {
         System.out.println();
     }
 
-    private void apmTest(){
+    private void apmTest() {
         QueryList applications = apmFacade.getMonitorGroups();
+        System.out.println();
+    }
+
+    private void aomTest() {
+        ThresholdRuleList thresholdRuleList = aomFacade.getThresholdRuleList();
         System.out.println();
     }
 }

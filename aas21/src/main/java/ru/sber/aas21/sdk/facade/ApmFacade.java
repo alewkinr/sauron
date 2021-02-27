@@ -35,7 +35,7 @@ public class ApmFacade {
     }
 
     public QueryList getServices(String monitorGroup) {
-        String url = "/ats/applications?monitorGroup=%s".formatted(monitorGroup);
+        String url = "ats/applications?monitorGroup=%s".formatted(monitorGroup);
         try {
             QueryList services = sberSDKUtils.callForObject(sberCloudConfig.getApmEndpoint(), url,
                     SberSDKUtils.Method.GET, QueryList.class);
@@ -47,7 +47,7 @@ public class ApmFacade {
     }
 
     public QueryList getServiceInstanceList(String application, String monitorGroup) {
-        String url = "/ats/applications/%s/instances?monitorGroup=%s".formatted(application, monitorGroup);
+        String url = "ats/applications/%s/instances?monitorGroup=%s".formatted(application, monitorGroup);
         try {
             QueryList applications = sberSDKUtils.callForObject(sberCloudConfig.getApmEndpoint(), url,
                     SberSDKUtils.Method.GET, QueryList.class);
@@ -59,7 +59,7 @@ public class ApmFacade {
     }
 
     public QueryList getTransactionList(String application, String monitorGroup) {
-        String url = "/ats/applications/%s/transactions?monitorGroup=%s".formatted(application, monitorGroup);
+        String url = "ats/applications/%s/transactions?monitorGroup=%s".formatted(application, monitorGroup);
         try {
             QueryList applications = sberSDKUtils.callForObject(sberCloudConfig.getApmEndpoint(), url,
                     SberSDKUtils.Method.GET, QueryList.class);
