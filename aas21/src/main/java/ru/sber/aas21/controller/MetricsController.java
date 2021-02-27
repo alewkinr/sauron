@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.sber.aas21.sdk.model.cloudEye.metrics.Metrics;
 import ru.sber.aas21.sdk.model.cloudEye.metrics.data.MetricData;
-import ru.sber.aas21.sdk.service.CloudEyeService;
+import ru.sber.aas21.sdk.service.CloudEyeFacade;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
@@ -21,12 +21,12 @@ import java.time.format.DateTimeFormatter;
 @RequestMapping("/api/metrics")
 public class MetricsController {
 
-    private final CloudEyeService cloudEyeService;
+    private final CloudEyeFacade cloudEyeFacade;
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
 
-    @PostConstruct
+//    @PostConstruct
     public void init() {
-        MetricData metricData = cloudEyeService.getMetricData("SYS.ECS", "disk_write_requests_rate", 0,
+        MetricData metricData = cloudEyeFacade.getMetricData("SYS.ECS", "disk_write_requests_rate", 0,
                 "instance_id", "cc49bc2b-20ff-4a7d-bfe3-56fc061b30b0",
                 LocalDateTime.now().minusDays(1), LocalDateTime.now(), 1200L, "min");
         System.out.println();
@@ -34,7 +34,7 @@ public class MetricsController {
 
     @GetMapping
     public ResponseEntity<Metrics> getAllMetrics() {
-        return ResponseEntity.ok(cloudEyeService.getAllMetrics());
+        return ResponseEntity.ok(cloudEyeFacade.getAllMetrics());
     }
 
     @GetMapping("/data")
@@ -47,7 +47,7 @@ public class MetricsController {
                                                     @RequestParam("to") String to,
                                                     @RequestParam("period") String period,
                                                     @RequestParam(value = "filter", required = false) String filter) {
-        return ResponseEntity.ok(cloudEyeService.getMetricData(nameSpace, metricName, Integer.valueOf(dimensionIndex), dimensionName, dimensionValue,
+        return ResponseEntity.ok(cloudEyeFacade.getMetricData(nameSpace, metricName, Integer.valueOf(dimensionIndex), dimensionName, dimensionValue,
                 LocalDateTime.parse(from, DATE_TIME_FORMATTER), LocalDateTime.parse(to, DATE_TIME_FORMATTER), Long.valueOf(period), filter));
     }
 
@@ -65,7 +65,7 @@ public class MetricsController {
                                                   @RequestParam("from") String from,
                                                   @RequestParam("to") String to,
                                                   @RequestParam("period") String period) {
-        return ResponseEntity.ok(cloudEyeService.getMetricData("AGT.ECS", "cpu_usage", 0,
+        return ResponseEntity.ok(cloudEyeFacade.getMetricData("AGT.ECS", "cpu_usage", 0,
                 "instance_id", dimensionValue,
                 LocalDateTime.parse(from, DATE_TIME_FORMATTER), LocalDateTime.parse(to, DATE_TIME_FORMATTER), Long.valueOf(period), ""));
     }
@@ -84,7 +84,7 @@ public class MetricsController {
                                                         @RequestParam("from") String from,
                                                         @RequestParam("to") String to,
                                                         @RequestParam("period") String period) {
-        return ResponseEntity.ok(cloudEyeService.getMetricData("AGT.ECS", "mem_usedPercent", 0,
+        return ResponseEntity.ok(cloudEyeFacade.getMetricData("AGT.ECS", "mem_usedPercent", 0,
                 "instance_id", dimensionValue,
                 LocalDateTime.parse(from, DATE_TIME_FORMATTER), LocalDateTime.parse(to, DATE_TIME_FORMATTER), Long.valueOf(period), "average"));
     }

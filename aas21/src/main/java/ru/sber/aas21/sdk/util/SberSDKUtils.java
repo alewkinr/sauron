@@ -32,12 +32,21 @@ public class SberSDKUtils {
     private final SberCloudConfig sberCloudConfig;
     private final ObjectMapper objectMapper;
 
+    public <T> T callForObject(String serviceEndpoint, String appendixUrl, Method method, String body, Class<T> resultClass) throws JsonProcessingException {
+        String call = call(serviceEndpoint, appendixUrl, method, body);
+        return objectMapper.readValue(call, resultClass);
+    }
+
     public <T> T callForObject(String serviceEndpoint, String appendixUrl, Method method, Class<T> resultClass) throws JsonProcessingException {
         String call = call(serviceEndpoint, appendixUrl, method);
         return objectMapper.readValue(call, resultClass);
     }
 
     public String call(String serviceEndpoint, String appendixUrl, Method method) {
+        return call(serviceEndpoint, appendixUrl, method, "");
+    }
+
+    public String call(String serviceEndpoint, String appendixUrl, Method method, String body) {
         //Create a new request.
         Request request = new Request();
         String result = null;
@@ -50,6 +59,10 @@ public class SberSDKUtils {
 
             //Specify a request method, such as GET, PUT, POST, DELETE, HEAD, and PATCH.
             request.setMethod(method.name());
+
+            switch (method) {
+                case PUT, POST -> request.setBody(body);
+            }
 
             //Set a request URL in the format of https://{Endpoint}/{URI}.
             String url = URL.formatted(serviceEndpoint, sberCloudConfig.getApiVersion(), sberCloudConfig.getProjectId(), appendixUrl);
