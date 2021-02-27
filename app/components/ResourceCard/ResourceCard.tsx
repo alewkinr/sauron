@@ -10,6 +10,7 @@ export interface Resource {
 
 export interface ResourceCardState {
   title: string;
+  isHorizontal: boolean;
   resources: Array<Resource>;
 }
 

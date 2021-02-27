@@ -10,17 +10,21 @@ const Item = ({ amount, id, alerts }: Resource) => (
   <Chart
     type={ChartTypes.doughnut}
     title={id}
-    data={{ doughnut: [alerts, amount] }}
-    labels={["Сигнал", "Ресурс"]}
-    width={80}
+    data={{
+      doughnut: {
+        labels: ["Сигнал", "Ресурс"],
+        data: [alerts, amount],
+      },
+    }}
+    config={{ isHiddenLegend: true, strokeWidth: 8 }}
     height={80}
   />
 );
 
 export function ResourceCardView(props: ResourceCardProps): JSX.Element {
-  const renderItem = (item: Resource) => {
-    return <Item title={item.id} amount={item.amount} alerts={item.alerts} />;
-  };
+  const renderItem = ({ item }) => (
+    <Item id={item.id} amount={item.amount} alerts={item.alerts} />
+  );
 
   return (
     <SafeAreaView style={styles.container}>
@@ -28,7 +32,7 @@ export function ResourceCardView(props: ResourceCardProps): JSX.Element {
         <FlatList
           data={props.resources}
           renderItem={renderItem}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(resource: Resource) => resource.id}
         />
       </ScrollView>
     </SafeAreaView>

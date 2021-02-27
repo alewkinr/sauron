@@ -1,6 +1,6 @@
 import React from "react";
 import { Dimensions } from "react-native";
-import { LineChart } from "react-native-chart-kit";
+import { LineChart, ProgressChart } from "react-native-chart-kit";
 import { ChartConfig } from "react-native-chart-kit/dist/HelperTypes";
 
 import Colors from "../../constants/Colors";
@@ -30,14 +30,15 @@ const initChartConfig = (props: ChartProps): ChartConfig => {
   );
 };
 const ChartView = function (props: ChartProps): JSX.Element {
+  const { width } = Dimensions.get("window");
   switch (props.type) {
     case ChartTypes.line:
       return (
         <View>
           <LineChart
-            data={props.data}
+            data={props.data.line}
             height={props.height}
-            width={Dimensions.get("window").width}
+            width={width}
             chartConfig={initChartConfig(props)}
             bezier
           />
@@ -50,7 +51,19 @@ const ChartView = function (props: ChartProps): JSX.Element {
     case ChartTypes.pie:
       break;
     case ChartTypes.doughnut:
-      break;
+      return (
+        <View>
+          <ProgressChart
+            data={props.data.doughnut}
+            width={width}
+            height={80}
+            strokeWidth={props.config.strokeWidth}
+            radius={props.radius}
+            chartConfig={initChartConfig(props)}
+            hideLegend={props.config.isHiddenLegend}
+          />
+        </View>
+      );
     case ChartTypes.parea:
       break;
     case ChartTypes.bubble:

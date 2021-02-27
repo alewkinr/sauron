@@ -18,8 +18,14 @@ export interface ChartDataSet {
 }
 
 export interface ChartData {
-  labels: Array<string>;
-  datasets: Array<ChartDataSet>;
+  line?: {
+    labels: Array<string>;
+    datasets: Array<ChartDataSet>;
+  };
+  doughnut?: {
+    labels: Array<string>;
+    data: Array<number>;
+  };
 }
 
 export interface CharConfig {
@@ -31,11 +37,13 @@ export interface CharConfig {
   decimalPlaces?: number;
   color?: CallableFunction;
   labelColor?: CallableFunction;
-  propsForBackgroundLines: {
+  strokeWidth?: number;
+  propsForBackgroundLines?: {
     stroke?: string;
     strokeWidth?: string;
     strokeDasharray: [];
   };
+  isHiddenLegend?: boolean;
 }
 
 export interface ChartState {
@@ -43,6 +51,7 @@ export interface ChartState {
   title?: string;
   data: ChartData;
   height: number;
+  radius?: number;
   config?: CharConfig;
 }
 
