@@ -1,10 +1,8 @@
 package ru.sber.aas21.configuration;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 
 @Getter
 @Setter
@@ -16,4 +14,7 @@ public class SberCloudConfig {
     private String projectId;
     private String apiVersion;
     private String cloudEyeEndpoint;
+    private String cloudTraceEndpoint;
+    private String aomEndpoint;
+    private String apmEndpoint;
 }

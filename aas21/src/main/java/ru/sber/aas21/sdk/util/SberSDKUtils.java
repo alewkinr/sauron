@@ -13,9 +13,12 @@ import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.springframework.http.HttpStatus;
 import ru.sber.aas21.configuration.SberCloudConfig;
+import ru.sber.aas21.exception.CustomException;
 
 import java.io.IOException;
+import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -34,12 +37,12 @@ public class SberSDKUtils {
 
     public <T> T callForObject(String serviceEndpoint, String appendixUrl, Method method, String body, Class<T> resultClass) throws JsonProcessingException {
         String call = call(serviceEndpoint, appendixUrl, method, body);
-        return objectMapper.readValue(call, resultClass);
+        return objectMapper.readValue(Optional.ofNullable(call).orElse("{}"), resultClass);
     }
 
     public <T> T callForObject(String serviceEndpoint, String appendixUrl, Method method, Class<T> resultClass) throws JsonProcessingException {
         String call = call(serviceEndpoint, appendixUrl, method);
-        return objectMapper.readValue(call, resultClass);
+        return objectMapper.readValue(Optional.ofNullable(call).orElse("{}"), resultClass);
     }
 
     public String call(String serviceEndpoint, String appendixUrl, Method method) {
@@ -90,6 +93,16 @@ public class SberSDKUtils {
 
             //Print the status line of the response.
             log.info("Response status: " + response.getStatusLine().toString());
+
+
+            switch (response.getStatusLine().getStatusCode()) {
+                case 404 -> throw new CustomException("Api Not Found", HttpStatus.NOT_FOUND);
+                case 400 -> throw new CustomException("Bad Request", HttpStatus.BAD_REQUEST);
+                case 401 -> throw new CustomException("Unauthorized", HttpStatus.UNAUTHORIZED);
+                case 403 -> throw new CustomException("Forbidden", HttpStatus.FORBIDDEN);
+                case 500 -> throw new CustomException("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR);
+                case 503 -> throw new CustomException("Service Unavailable", HttpStatus.SERVICE_UNAVAILABLE);
+            }
 
             //Print the header fields of the response.
             Header[] resHeaders = response.getAllHeaders();

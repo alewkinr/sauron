@@ -25,7 +25,7 @@ public class ApmFacade {
 
     public QueryList getMonitorGroups() {
         try {
-            QueryList applications = sberSDKUtils.callForObject(sberCloudConfig.getCloudEyeEndpoint(), "atps/monitorgroups",
+            QueryList applications = sberSDKUtils.callForObject(sberCloudConfig.getApmEndpoint(), "atps/monitorgroups",
                     SberSDKUtils.Method.GET, QueryList.class);
             log.debug("Metrics: " + applications.toString());
             return applications;
@@ -37,7 +37,7 @@ public class ApmFacade {
     public QueryList getServices(String monitorGroup) {
         String url = "/ats/applications?monitorGroup=%s".formatted(monitorGroup);
         try {
-            QueryList services = sberSDKUtils.callForObject(sberCloudConfig.getCloudEyeEndpoint(), "ats/applications",
+            QueryList services = sberSDKUtils.callForObject(sberCloudConfig.getApmEndpoint(), url,
                     SberSDKUtils.Method.GET, QueryList.class);
             log.debug("Metrics: " + services.toString());
             return services;
@@ -49,7 +49,7 @@ public class ApmFacade {
     public QueryList getServiceInstanceList(String application, String monitorGroup) {
         String url = "/ats/applications/%s/instances?monitorGroup=%s".formatted(application, monitorGroup);
         try {
-            QueryList applications = sberSDKUtils.callForObject(sberCloudConfig.getCloudEyeEndpoint(), url,
+            QueryList applications = sberSDKUtils.callForObject(sberCloudConfig.getApmEndpoint(), url,
                     SberSDKUtils.Method.GET, QueryList.class);
             log.debug("Metrics: " + applications.toString());
             return applications;
@@ -61,7 +61,7 @@ public class ApmFacade {
     public QueryList getTransactionList(String application, String monitorGroup) {
         String url = "/ats/applications/%s/transactions?monitorGroup=%s".formatted(application, monitorGroup);
         try {
-            QueryList applications = sberSDKUtils.callForObject(sberCloudConfig.getCloudEyeEndpoint(), url,
+            QueryList applications = sberSDKUtils.callForObject(sberCloudConfig.getApmEndpoint(), url,
                     SberSDKUtils.Method.GET, QueryList.class);
             log.debug("Metrics: " + applications.toString());
             return applications;
@@ -76,7 +76,7 @@ public class ApmFacade {
                 application, monitorGroup, limit);
 
         try {
-            TraceData traces = sberSDKUtils.callForObject(sberCloudConfig.getCloudEyeEndpoint(), url,
+            TraceData traces = sberSDKUtils.callForObject(sberCloudConfig.getApmEndpoint(), url,
                     SberSDKUtils.Method.GET, TraceData.class);
             log.debug("Traces: " + traces.toString());
             return traces;
@@ -89,7 +89,7 @@ public class ApmFacade {
         String url = "ats/spans?traceId=%s".formatted(traceId);
 
         try {
-            TracingDetails trace = sberSDKUtils.callForObject(sberCloudConfig.getCloudEyeEndpoint(), url,
+            TracingDetails trace = sberSDKUtils.callForObject(sberCloudConfig.getApmEndpoint(), url,
                     SberSDKUtils.Method.GET, TracingDetails.class);
             log.debug("Traces: " + trace.toString());
             return trace;
