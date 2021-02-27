@@ -6,8 +6,8 @@ import ru.sber.aas21.sdk.model.apm.QueryList;
 import ru.sber.aas21.sdk.model.cloudEye.alarms.Alarms;
 import ru.sber.aas21.sdk.model.cloudEye.metrics.Metrics;
 import ru.sber.aas21.sdk.model.cloudEye.metrics.data.MetricData;
-import ru.sber.aas21.sdk.facade.ApplicationOperationManagementFacade;
-import ru.sber.aas21.sdk.facade.ApplicationPerformanceManagementFacade;
+import ru.sber.aas21.sdk.facade.AomFacade;
+import ru.sber.aas21.sdk.facade.ApmFacade;
 import ru.sber.aas21.sdk.facade.CloudEyeFacade;
 import ru.sber.aas21.sdk.facade.CloudTraceFacade;
 
@@ -20,8 +20,8 @@ public class TestService {
 
     private final CloudEyeFacade cloudEyeFacade;
     private final CloudTraceFacade cloudTraceFacade;
-    private final ApplicationOperationManagementFacade aomFacade;
-    private final ApplicationPerformanceManagementFacade apmFacade;
+    private final AomFacade aomFacade;
+    private final ApmFacade apmFacade;
 
     @PostConstruct
     public void init() {
@@ -40,8 +40,7 @@ public class TestService {
     }
 
     private void apmTest(){
-        QueryList applications = apmFacade.getApplications();
-        QueryList services = apmFacade.getServices();
+        QueryList applications = apmFacade.getMonitorGroups();
         System.out.println();
     }
 }

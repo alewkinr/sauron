@@ -8,7 +8,7 @@ import ru.sber.aas21.sdk.util.SberSDKUtils;
 
 @Slf4j
 @RequiredArgsConstructor
-public class ApplicationOperationManagementFacade {
+public class AomFacade {
 
     private final SberSDKUtils sberSDKUtils;
     private final SberCloudConfig sberCloudConfig;

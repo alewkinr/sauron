@@ -9,6 +9,7 @@ import ru.sber.aas21.configuration.SberCloudConfig;
 import ru.sber.aas21.exception.CustomException;
 import ru.sber.aas21.sdk.model.apm.QueryList;
 import ru.sber.aas21.sdk.model.apm.TraceData;
+import ru.sber.aas21.sdk.model.apm.TracingDetails;
 import ru.sber.aas21.sdk.util.SberSDKUtils;
 
 import java.time.LocalDateTime;
@@ -16,13 +17,13 @@ import java.time.ZoneOffset;
 
 @Slf4j
 @RequiredArgsConstructor
-public class ApplicationPerformanceManagementFacade {
+public class ApmFacade {
 
     private final SberSDKUtils sberSDKUtils;
     private final SberCloudConfig sberCloudConfig;
     private final ObjectMapper objectMapper;
 
-    public QueryList getApplications() {
+    public QueryList getMonitorGroups() {
         try {
             QueryList applications = sberSDKUtils.callForObject(sberCloudConfig.getCloudEyeEndpoint(), "atps/monitorgroups",
                     SberSDKUtils.Method.GET, QueryList.class);
@@ -33,19 +34,20 @@ public class ApplicationPerformanceManagementFacade {
         }
     }
 
-    public QueryList getServices() {
+    public QueryList getServices(String monitorGroup) {
+        String url = "/ats/applications?monitorGroup=%s".formatted(monitorGroup);
         try {
-            QueryList applications = sberSDKUtils.callForObject(sberCloudConfig.getCloudEyeEndpoint(), "ats/applications",
+            QueryList services = sberSDKUtils.callForObject(sberCloudConfig.getCloudEyeEndpoint(), "ats/applications",
                     SberSDKUtils.Method.GET, QueryList.class);
-            log.debug("Metrics: " + applications.toString());
-            return applications;
+            log.debug("Metrics: " + services.toString());
+            return services;
         } catch (JsonProcessingException e) {
             throw new CustomException("Sber API response deserialization error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    public QueryList getServiceInstanceList(String application) {
-        String url = "/ats/applications/%s/instances".formatted(application);
+    public QueryList getServiceInstanceList(String application, String monitorGroup) {
+        String url = "/ats/applications/%s/instances?monitorGroup=%s".formatted(application, monitorGroup);
         try {
             QueryList applications = sberSDKUtils.callForObject(sberCloudConfig.getCloudEyeEndpoint(), url,
                     SberSDKUtils.Method.GET, QueryList.class);
@@ -56,8 +58,8 @@ public class ApplicationPerformanceManagementFacade {
         }
     }
 
-    public QueryList getTransactionList(String application) {
-        String url = "/ats/applications/%s/transactions".formatted(application);
+    public QueryList getTransactionList(String application, String monitorGroup) {
+        String url = "/ats/applications/%s/transactions?monitorGroup=%s".formatted(application, monitorGroup);
         try {
             QueryList applications = sberSDKUtils.callForObject(sberCloudConfig.getCloudEyeEndpoint(), url,
                     SberSDKUtils.Method.GET, QueryList.class);
@@ -83,5 +85,17 @@ public class ApplicationPerformanceManagementFacade {
         }
     }
 
+    public TracingDetails getTracingDetails(String traceId) {
+        String url = "ats/spans?traceId=%s".formatted(traceId);
+
+        try {
+            TracingDetails trace = sberSDKUtils.callForObject(sberCloudConfig.getCloudEyeEndpoint(), url,
+                    SberSDKUtils.Method.GET, TracingDetails.class);
+            log.debug("Traces: " + trace.toString());
+            return trace;
+        } catch (JsonProcessingException e) {
+            throw new CustomException("Sber API response deserialization error", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 }
