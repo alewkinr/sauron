@@ -3,9 +3,13 @@ import { StyleSheet } from "react-native";
 
 import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
-import { SearchInput } from "../components/SearchInput/index";
+import { Chart, ChartData, ChartTypes } from "../components/Chart";
 
 export default function TabTwoScreen() {
+  const data = {
+    line: [1, 2, 3, 0],
+  } as ChartData;
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tab Two</Text>
@@ -15,10 +19,14 @@ export default function TabTwoScreen() {
         darkColor="rgba(255,255,255,0.1)"
       />
       <EditScreenInfo path="/screens/TabTwoScreen.tsx" />
-      <SearchInput
-        onChangeText={() => alert("some changes")}
-        placeholder={"something"}
-        value={"some value "}
+      <Chart
+        type={ChartTypes.line}
+        labels={["1", "2", "3", "0"]}
+        title={"my chart"}
+        fill={false}
+        data={data}
+        width={400}
+        height={200}
       />
     </View>
   );
