@@ -1,5 +1,5 @@
 import React from "react";
-import { Line } from "react-chartjs-2";
+import { Line, Doughnut } from "react-chartjs-2";
 
 import { View } from "../Themed";
 
@@ -43,6 +43,29 @@ export function ChartView(props: ChartProps): JSX.Element {
       break;
     case ChartTypes.pie:
       break;
+    case ChartTypes.doughnut:
+      return (
+        <View style={styles.container}>
+          <Doughnut
+            data={{
+              labels: props.labels,
+              datasets: [
+                {
+                  label: props.title,
+                  data: props.data.doughnut,
+                  backgroundColor: "black", // todo: set default color
+                  pointHoverRadius: 4,
+                  borderWidth: 2,
+                  radius: 2,
+                },
+              ],
+            }}
+            width={props.width}
+            height={props.height}
+            options={customSizeOpt(props)}
+          />
+        </View>
+      );
     case ChartTypes.parea:
       break;
     case ChartTypes.bubble:

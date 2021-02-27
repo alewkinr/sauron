@@ -15,7 +15,9 @@ export default function OverviewScreen() {
       <Divider />
 
       <ScreenSubtitle>Ресурсы</ScreenSubtitle>
-      <Text>Ни для одного из ресурсов не сработало сигналов тревоги.</Text>
+      <Text>
+        Ни для одного из ресурсов не сработало никаких сигналов тревоги
+      </Text>
     </View>
   );
 }
