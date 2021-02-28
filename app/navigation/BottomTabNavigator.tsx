@@ -26,28 +26,28 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="Statistic"
+      initialRouteName="Stats"
       tabBarOptions={{
         activeTintColor: Colors[colorScheme].tabIconSelected,
         inactiveTintColor: Colors[colorScheme].tabIconDefault,
       }}
     >
       <BottomTab.Screen
-        name="Statistic"
+        name="Stats"
         component={TabOneNavigator}
-
         options={{
-            tabBarLabel: "Мониторинг",
+          tabBarLabel: "Мониторинг",
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="stats-chart" color={color} />
           ),
         }}
       />
+
       <BottomTab.Screen
         name="Service"
         component={TabTwoNavigator}
         options={{
-            tabBarLabel: "Сервисы",
+          tabBarLabel: "Сервисы",
           tabBarIcon: ({ color }) => <TabBarIcon name="grid" color={color} />,
         }}
       />
@@ -56,7 +56,7 @@ export default function BottomTabNavigator() {
         name="Events"
         component={TabThreeNavigator}
         options={{
-            tabBarLabel: "События",
+          tabBarLabel: "События",
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="notifications" color={color} />
           ),
@@ -67,14 +67,14 @@ export default function BottomTabNavigator() {
         name="Help"
         component={TabFourNavigator}
         options={{
-            tabBarLabel: "Поддержка",
+          tabBarLabel: "Поддержка",
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="help-circle" color={color} />
           ),
         }}
       />
       <BottomTab.Screen
-        name="Аккаунт"
+        name="Account"
         component={TabFiveNavigator}
         options={{
           tabBarIcon: ({ color }) => (
