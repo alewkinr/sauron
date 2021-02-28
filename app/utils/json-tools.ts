@@ -5,7 +5,7 @@ import { dateShortener } from "./time-tools";
 
 export function toLineChartDataSet(input: ResponseMetrics): ChartData {
   // const labels = input.datapoints.map((md) => dateShortener(md.ts));
-  const labels = input.datapoints.map((md) => `${md.ts}`);
+  const labels = input.datapoints.map((md) => dateShortener(md.timestamp));
   const data = input.datapoints.map((md) => md.min);
 
   if (labels.length === 0 || data.length === 0) {

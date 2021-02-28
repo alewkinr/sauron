@@ -43,6 +43,7 @@ const ChartView = function (props: ChartProps): JSX.Element {
             height={props.height}
             withDots={false}
             width={width - 50}
+            verticalLabelRotation={-45}
             chartConfig={initChartConfig(props)}
             bezier
           />

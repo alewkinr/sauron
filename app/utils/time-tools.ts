@@ -69,12 +69,10 @@ export function dateShortener(unix: number): string {
   const min = a.getMinutes();
 
   const datetime =
-    toZeroLeadFormat(date) +
-    "." +
-    month +
-    " " +
-    toZeroLeadFormat(hour) +
-    ":" +
-    toZeroLeadFormat(min);
+    // toZeroLeadFormat(date) +
+    // "." +
+    // month +
+    // " " +
+    toZeroLeadFormat(hour) + ":" + toZeroLeadFormat(min);
   return datetime;
 }
