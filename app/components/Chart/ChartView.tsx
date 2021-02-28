@@ -1,39 +1,93 @@
-import React from "react";
-import { Line, Doughnut } from "react-chartjs-2";
+import React, { useEffect, useReducer, useMemo } from "react";
+import { LineChart, ProgressChart } from "react-native-chart-kit";
+import { ChartConfig } from "react-native-chart-kit/dist/HelperTypes";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import Colors from "../../constants/Colors";
 import { View } from "../Themed";
+import { getDataCloudCPU } from "../../api/cpu-usage/requests";
 
-import styles from "./styles";
 import { ChartProps, ChartTypes } from "./Chart";
 
-// customSizeOpt — получаем опцию для рендера чарта с кастомными шириной и высотой
-const customSizeOpt = (props: ChartProps) => {
-  return (props.height || props.width) && { maintainAspectRatio: false };
+const initChartConfig = (props: ChartProps): ChartConfig => {
+  return Object.assign(
+    {},
+    {
+      backgroundColor: Colors.light.background,
+      backgroundGradientFrom: Colors.light.background,
+      backgroundGradientTo: Colors.light.background,
+      fillShadowGradient: Colors.light.tint,
+      fillShadowGradientOpacity: 0.3,
+      decimalPlaces: 2,
+      color: () => Colors.light.tint,
+      labelColor: () => Colors.light.grey,
+      propsForBackgroundLines: {
+        stroke: Colors.light.lightGrey,
+        strokeWidth: "1",
+        strokeDasharray: [],
+      },
+    },
+    props.config
+  );
 };
+const ChartView = function (props: ChartProps): JSX.Element {
+  // const [state, dispatch] = useReducer(
+  //   (prevState, action) => {
+  //     switch (action.type) {
+  //       case "COLLECT_DATA":
+  //         return {
+  //           ...prevState,
+  //           data: action.data,
+  //           isLoading: false,
+  //         };
+  //       case "SOMETHING":
+  //         break;
+  //     }
+  //   },
+  //   {
+  //     isLoading: false,
+  //   }
+  // );
+  //
+  // useEffect(() => {
+  //   let userToken;
+  //   try {
+  //     userToken = AsyncStorage.getItem("userToken");
+  //   } catch (e) {
+  //     console.log(`error to get token ${e}`);
+  //   }
+  //   dispatch({ type: "RESTORE_TOKEN", token: userToken });
+  // }, []);
+  //
+  // const getDataContext = useMemo(
+  //   () => ({
+  //     getMetricsData: async () => {
+  //       try {
+  //         const userToken = AsyncStorage.getItem("userToken");
+  //         const data = AsyncStorage.setItem(
+  //           "data",
+  //           await getDataCloudCPU(userToken, Date.now(), Date.now())
+  //         );
+  //         console.debug(data);
+  //         dispatch({ type: "COLLECT_DATA", data: data });
+  //       } catch (e) {
+  //         console.error(`Не удалось получить данные о метриках ${e}`);
+  //       }
+  //     },
+  //   }),
+  //   []
+  // );
 
-export function ChartView(props: ChartProps): JSX.Element {
   switch (props.type) {
     case ChartTypes.line:
       return (
-        <View style={styles.container}>
-          <Line
-            data={{
-              labels: props.labels,
-              datasets: [
-                {
-                  label: props.title,
-                  data: props.data.line,
-                  fill: props.fill === true,
-                  backgroundColor: "black", // todo: set default color
-                  pointHoverRadius: 4,
-                  borderWidth: 2,
-                  radius: 2,
-                },
-              ],
-            }}
-            width={props.width}
+        <View>
+          <LineChart
+            data={props.data.line}
             height={props.height}
-            options={customSizeOpt(props)}
+            width={80}
+            chartConfig={initChartConfig(props)}
+            bezier
           />
         </View>
       );
@@ -45,24 +99,15 @@ export function ChartView(props: ChartProps): JSX.Element {
       break;
     case ChartTypes.doughnut:
       return (
-        <View style={styles.container}>
-          <Doughnut
-            data={{
-              labels: props.labels,
-              datasets: [
-                {
-                  label: props.title,
-                  data: props.data.doughnut,
-                  backgroundColor: "black", // todo: set default color
-                  pointHoverRadius: 4,
-                  borderWidth: 2,
-                  radius: 2,
-                },
-              ],
-            }}
-            width={props.width}
-            height={props.height}
-            options={customSizeOpt(props)}
+        <View>
+          <ProgressChart
+            data={props.data.doughnut}
+            width={120}
+            height={80}
+            strokeWidth={props.config?.strokeWidth}
+            radius={props.radius}
+            chartConfig={initChartConfig(props)}
+            hideLegend={props.config?.isHiddenLegend}
           />
         </View>
       );
@@ -81,4 +126,8 @@ export function ChartView(props: ChartProps): JSX.Element {
   }
 
   throw new Error("undefined chart type");
-}
+};
+
+export const Chart: React.FC<ChartProps> = (props) => {
+  return <ChartView {...props} />;
+};

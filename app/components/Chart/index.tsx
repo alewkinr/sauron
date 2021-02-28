@@ -1,2 +1,4 @@
-import { Chart, ChartData, ChartTypes } from "./Chart";
+import { ChartData, ChartTypes } from "./Chart";
+import { Chart } from "./ChartView";
+
 export { Chart, ChartData, ChartTypes };

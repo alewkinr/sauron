@@ -1,6 +1,7 @@
-import React from "react";
+import { useReducer, useMemo } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { ChartView } from "./ChartView";
+import { getDataCloudCPU } from "../../api/cpu-usage/requests";
 
 export enum ChartTypes {
   line,
@@ -15,23 +16,46 @@ export enum ChartTypes {
   mixed,
 }
 
+export interface ChartDataSet {
+  data: Array<number>;
+}
+
 export interface ChartData {
-  line?: Array<number>;
-  doughnut?: Array<number>;
+  line?: {
+    labels: Array<string>;
+    datasets: Array<ChartDataSet>;
+  };
+  doughnut?: {
+    labels: Array<string>;
+    data: Array<number>;
+  };
+}
+
+export interface CharConfig {
+  backgroundColor?: string;
+  backgroundGradientFrom?: string;
+  backgroundGradientTo?: string;
+  fillShadowGradient?: string;
+  fillShadowGradientOpacity?: number;
+  decimalPlaces?: number;
+  color?: CallableFunction;
+  labelColor?: CallableFunction;
+  strokeWidth?: number;
+  propsForBackgroundLines?: {
+    stroke?: string;
+    strokeWidth?: string;
+    strokeDasharray: [];
+  };
+  isHiddenLegend?: boolean;
 }
 
 export interface ChartState {
   type: ChartTypes;
   title?: string;
   data: ChartData;
-  labels: Array<string>;
-  width?: number;
-  height?: number;
-  fill?: boolean;
+  height: number;
+  radius?: number;
+  config?: CharConfig;
 }
 
 export type ChartProps = ChartState;
-
-export const Chart: React.FC<ChartProps> = (props) => {
-  return <ChartView {...props} />;
-};
