@@ -1,17 +1,9 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  StyleSheet,
-  TextInput,
-  SafeAreaView,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
+import { View, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 
 import { ScreenTitle } from "../components/ScreenTitle";
 import { ScreenSubtitle } from "../components/ScreenSubtitle";
 import { Text } from "../components/Themed";
-import SearchIconSvg from "../components/SearchIconSvg";
 import useCachedResources from "../hooks/useCachedResources";
 import Divider from "../components/Divider";
 import { Chart, ChartTypes } from "../components/Chart";
@@ -42,17 +34,13 @@ function DataEnrichedChart({ metric }): JSX.Element {
     return await resp.text();
   }
 
-  useEffect(() => {
-    () => initData();
-  });
-
   async function initData() {
     try {
       const token = await getAuthToken();
       const data = await getMetrics(
         metric,
         token,
-        Date.now() - dayToMilliseconds(0.1),
+        Date.now() - dayToMilliseconds(0.2),
         Date.now()
       );
       setData({ data: data, isLoaded: true });
@@ -62,6 +50,10 @@ function DataEnrichedChart({ metric }): JSX.Element {
       console.error(`Не удалось получить данные о метриках ${e}`);
     }
   }
+
+  useEffect(() => {
+    if (!isLoaded) initData();
+  }, [isLoaded]);
 
   return (
     <View>
@@ -84,7 +76,7 @@ export default function OverviewScreen() {
     return null;
   }
   return (
-    <SafeAreaView>
+    <View>
       <View style={styles.container}>
         {/*// todo: add search panel*/}
 
@@ -299,7 +291,7 @@ export default function OverviewScreen() {
             borderBottomWidth: 1,
           }}
         />
-        <ScrollView style={{}}>
+        <ScrollView style={{ height: 500 }}>
           <View style={{ paddingHorizontal: 10, paddingTop: 30 }}>
             <ScreenSubtitle>Ресурсы</ScreenSubtitle>
             <Text style={{ paddingVertical: 10 }}>
@@ -472,7 +464,7 @@ export default function OverviewScreen() {
               shadowOpacity: 1,
               borderRadius: 8,
               backgroundColor: "#fff",
-              height: 400,
+              height: 200,
               paddingVertical: 20,
               paddingHorizontal: 15,
             }}
@@ -1087,7 +1079,7 @@ export default function OverviewScreen() {
           </View>
         </ScrollView>
       </View>
-    </SafeAreaView>
+    </View>
 
     //     <View style={styles.container}>
     //   {/*// todo: add search panel*/}
