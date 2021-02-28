@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {StyleSheet, View, TouchableOpacity} from "react-native";
+import {StyleSheet, View, TouchableOpacity, Dimensions} from "react-native";
 
 import {Text, TextProps} from "./Themed";
 import RefreshIconSvg from "./RefreshIconSvg";
@@ -9,7 +9,9 @@ const styles = StyleSheet.create({
         marginTop: 30,
         flexDirection: "row",
         alignItems: 'baseline',
-        padding: 10
+        padding: 10,
+        width: Dimensions.get('window').width,
+        justifyContent: "space-between"
     },
     text: {
         fontFamily: "SBSansDisplayBold",
@@ -24,10 +26,8 @@ const styles = StyleSheet.create({
 });
 
 
-
 export function ScreenTitle(props: TextProps) {
-    let time = `${new Date().toLocaleString('ru-RU', {hour: "2-digit"})}:${new Date().toLocaleString('ru-RU', {minute: "2-digit"})}:${new Date().toLocaleString('ru-RU', {second: "2-digit"})}`
-    const [currentTime, setCurrentTime] = useState(time)
+    const [currentTime, setCurrentTime] = useState(`${new Date().toLocaleString('ru-RU', {hour: "2-digit"})}:${new Date().toLocaleString('ru-RU', {minute: "2-digit"})}:${new Date().toLocaleString('ru-RU', {second: "2-digit"})}`)
 
     return (
         <View style={styles.container}>
@@ -40,7 +40,8 @@ export function ScreenTitle(props: TextProps) {
             }}>на {currentTime}</Text>
             <TouchableOpacity
                 onPress={() => {
-                    setCurrentTime(time)
+                    setCurrentTime(`${new Date().toLocaleString('ru-RU', {hour: "2-digit"})}:${new Date().toLocaleString('ru-RU', {minute: "2-digit"})}:${new Date().toLocaleString('ru-RU', {second: "2-digit"})}`
+                    )
                 }}
                 style={{
                     position: "relative",

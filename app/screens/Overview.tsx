@@ -4,11 +4,7 @@ import {View, StyleSheet, TextInput, SafeAreaView, TouchableOpacity, ScrollView}
 import {ScreenTitle} from "../components/ScreenTitle";
 import {ScreenSubtitle} from "../components/ScreenSubtitle";
 import {Text} from "../components/Themed";
-import SearchIconSvg from "../components/SearchIconSvg";
-import useCachedResources from "../hooks/useCachedResources";
-import {LinearGradient} from "expo-linear-gradient";
 import Divider from "../components/Divider";
-import {ResourceCardView} from "../components/ResourceCard/ResourceCardView";
 import {Chart, ChartTypes} from "../components/Chart";
 import FilterIconSvg from "../components/FilterIconSvg";
 import SettingsIcon from "../components/SettingsIcon";
@@ -16,39 +12,14 @@ import RotateIcon from "../components/RotateIcon";
 
 
 export default function OverviewScreen() {
-    const [searchField, setSearchField] = useState('')
 
-    const isLoadingComplete = useCachedResources();
-    if (!isLoadingComplete) {
-        return null
-    }
+
     return (
         <SafeAreaView>
             <View style={styles.container}>
 
                 {/*// todo: add search panel*/}
-                <View style={{
-                    // padding: 20,
-                    elevation: 1,
-                    shadowOffset: {width: 0, height: 2},
-                    shadowColor: 'rgba(0,0,0,0.05)',
-                    shadowRadius: 6,
-                    shadowOpacity: 1,
-                    marginLeft: -5,
-                    marginRight: -5,
-                    marginTop: 10,
-                    backgroundColor: '#fff',
-                    position: "relative",
-                }}>
-                    <TextInput
-                        style={styles.textInput}
-                        placeholder="Поиск по ключевым словам"
-                        value={searchField}
-                        placeholderTextColor={"#C1C1C1"}
-                        onChangeText={setSearchField}
-                    />
-                    <SearchIconSvg width={18} height={18} style={{position: "absolute", left: 25, top: 15}}/>
-                </View>
+
                 <ScreenTitle>Мониторинг</ScreenTitle>
                 <View style={{padding: 10, flexDirection: 'row'}}>
                     <TouchableOpacity
@@ -894,9 +865,6 @@ export default function OverviewScreen() {
 
 const styles = StyleSheet.create({
     container: {
-
-        flex: 1,
-
         backgroundColor: '#fff'
         // width: Dimensions.get("window").width,
     },
