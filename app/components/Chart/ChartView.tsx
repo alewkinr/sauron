@@ -30,7 +30,7 @@ const initChartConfig = (props: ChartProps): ChartConfig => {
   );
 };
 const ChartView = function (props: ChartProps): JSX.Element {
-  const { width } = Dimensions.get("window");
+  // const { width } = Dimensions.get("window");
   switch (props.type) {
     case ChartTypes.line:
       return (
@@ -38,7 +38,7 @@ const ChartView = function (props: ChartProps): JSX.Element {
           <LineChart
             data={props.data.line}
             height={props.height}
-            width={width}
+            width={80}
             chartConfig={initChartConfig(props)}
             bezier
           />
@@ -55,12 +55,12 @@ const ChartView = function (props: ChartProps): JSX.Element {
         <View>
           <ProgressChart
             data={props.data.doughnut}
-            width={width}
+            width={120}
             height={80}
-            strokeWidth={props.config.strokeWidth}
+            strokeWidth={props.config?.strokeWidth}
             radius={props.radius}
             chartConfig={initChartConfig(props)}
-            hideLegend={props.config.isHiddenLegend}
+            hideLegend={props.config?.isHiddenLegend}
           />
         </View>
       );

@@ -28,8 +28,8 @@ export function ResourceCardView(props: ResourceCardProps): JSX.Element {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollView}>
-        <FlatList
+      <ScrollView style={styles.scrollView} horizontal={true} showsHorizontalScrollIndicator={false}>
+        <FlatList horizontal={true}
           data={props.resources}
           renderItem={renderItem}
           keyExtractor={(resource: Resource) => resource.id}

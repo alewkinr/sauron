@@ -8,10 +8,11 @@ import SearchIconSvg from "../components/SearchIconSvg";
 import useCachedResources from "../hooks/useCachedResources";
 import {LinearGradient} from "expo-linear-gradient";
 import Divider from "../components/Divider";
-import { ResourceCardView } from "../components/ResourceCard/ResourceCardView";
-import { Chart, ChartTypes } from "../components/Chart/index";
+import {ResourceCardView} from "../components/ResourceCard/ResourceCardView";
+import {Chart, ChartTypes} from "../components/Chart";
 import FilterIconSvg from "../components/FilterIconSvg";
 import SettingsIcon from "../components/SettingsIcon";
+import RotateIcon from "../components/RotateIcon";
 
 
 export default function OverviewScreen() {
@@ -24,6 +25,7 @@ export default function OverviewScreen() {
     return (
         <SafeAreaView>
             <View style={styles.container}>
+
                 {/*// todo: add search panel*/}
                 <View style={{
                     // padding: 20,
@@ -228,11 +230,24 @@ export default function OverviewScreen() {
                         <Text style={{paddingVertical: 10}}>
                             Ни для одного из ресурсов не сработало никаких сигналов тревоги
                         </Text>
+
                         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}
                                     style={{paddingVertical: 15}}>
                             <View style={{width: 140}}>
                                 <View style={styles.square}>
-
+                                    <Chart
+                                        type={ChartTypes.doughnut}
+                                        title={'1'}
+                                        data={{
+                                            doughnut: {
+                                                labels: ["Сигнал", "Ресурс"],
+                                                data: [3, 8],
+                                            },
+                                        }}
+                                        config={{isHiddenLegend: true, strokeWidth: 8}}
+                                        height={80}
+                                    />
+                                    <Text style={{position: 'absolute', left: 48, fontSize: 16}}>1/2</Text>
                                 </View>
                                 <Text style={{
                                     paddingVertical: 15,
@@ -245,7 +260,19 @@ export default function OverviewScreen() {
                             </View>
                             <View style={{width: 130}}>
                                 <View style={styles.square}>
-
+                                    <Chart
+                                        type={ChartTypes.doughnut}
+                                        title={'2'}
+                                        data={{
+                                            doughnut: {
+                                                labels: ["Сигнал", "Ресурс"],
+                                                data: [2, 4],
+                                            },
+                                        }}
+                                        config={{isHiddenLegend: true, strokeWidth: 8}}
+                                        height={80}
+                                    />
+                                    <Text style={{position: 'absolute', left: 48, fontSize: 16}}>0/2</Text>
                                 </View>
                                 <Text style={{
                                     paddingVertical: 15,
@@ -259,7 +286,19 @@ export default function OverviewScreen() {
 
                             <View style={{width: 130}}>
                                 <View style={styles.square}>
-
+                                    <Chart
+                                        type={ChartTypes.doughnut}
+                                        title={'3'}
+                                        data={{
+                                            doughnut: {
+                                                labels: ["Сигнал", "Ресурс"],
+                                                data: [1, 5],
+                                            },
+                                        }}
+                                        config={{isHiddenLegend: true, strokeWidth: 8}}
+                                        height={80}
+                                    />
+                                    <Text style={{position: 'absolute', left: 48, fontSize: 16}}>2/2</Text>
                                 </View>
                                 <Text style={{
                                     paddingVertical: 15,
@@ -273,7 +312,18 @@ export default function OverviewScreen() {
 
                             <View style={{width: 130}}>
                                 <View style={styles.square}>
-
+                                    <Chart
+                                        type={ChartTypes.doughnut}
+                                        title={'4'}
+                                        data={{
+                                            doughnut: {
+                                                labels: ["Сигнал", "Ресурс"],
+                                                data: [2, 4],
+                                            },
+                                        }}
+                                        config={{isHiddenLegend: true, strokeWidth: 8}}
+                                        height={80}
+                                    />
                                 </View>
                                 <Text style={{
                                     paddingVertical: 15,
@@ -286,7 +336,18 @@ export default function OverviewScreen() {
                             </View>
                             <View style={{width: 130}}>
                                 <View style={styles.square}>
-
+                                    <Chart
+                                        type={ChartTypes.doughnut}
+                                        title={'5'}
+                                        data={{
+                                            doughnut: {
+                                                labels: ["Сигнал", "Ресурс"],
+                                                data: [2, 3],
+                                            },
+                                        }}
+                                        config={{isHiddenLegend: true, strokeWidth: 8}}
+                                        height={80}
+                                    />
                                 </View>
                                 <Text style={{
                                     paddingVertical: 15,
@@ -324,6 +385,121 @@ export default function OverviewScreen() {
                             borderBottomColor: "#F1F1F1",
                             borderBottomWidth: 1
                         }}/>
+                        <View style={{marginTop: 10, flexDirection: "row"}}>
+                            <TouchableOpacity
+                                onPress={() => {
+
+                                }}
+                                style={{
+                                    width: 30,
+                                    height: 30,
+                                    margin: 10,
+                                    justifyContent: "center",
+                                    alignItems: 'center',
+                                    backgroundColor: '#343F48',
+                                    borderRadius: 8,
+                                }}
+                            >
+
+                                <Text style={{color: '#fff', fontFamily: "SBSansDisplay", fontSize: 14}}>1Ч</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => {
+
+                                }}
+                                style={{
+                                    width: 30,
+                                    height: 30,
+                                    margin: 10,
+                                    justifyContent: "center",
+                                    alignItems: 'center',
+                                    backgroundColor: '#FFFFFF',
+                                    borderRadius: 8,
+                                }}
+                            >
+
+                                <Text style={{color: '#000', fontFamily: "SBSansDisplay", fontSize: 14}}>1Д</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => {
+
+                                }}
+                                style={{
+                                    width: 30,
+                                    height: 30,
+                                    margin: 10,
+                                    justifyContent: "center",
+                                    alignItems: 'center',
+                                    backgroundColor: '#FFFFFF',
+                                    borderRadius: 8,
+                                }}
+                            >
+
+                                <Text style={{color: '#000', fontFamily: "SBSansDisplay", fontSize: 14}}>1Н</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => {
+
+                                }}
+                                style={{
+                                    width: 30,
+                                    height: 30,
+                                    margin: 10,
+                                    justifyContent: "center",
+                                    alignItems: 'center',
+                                    backgroundColor: '#FFFFFF',
+                                    borderRadius: 8,
+                                }}
+                            >
+
+                                <Text style={{color: '#000', fontFamily: "SBSansDisplay", fontSize: 14}}>1М</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => {
+
+                                }}
+                                style={{
+                                    width: 30,
+                                    height: 30,
+                                    margin: 10,
+                                    justifyContent: "center",
+                                    alignItems: 'center',
+                                    backgroundColor: '#FFFFFF',
+                                    borderRadius: 8,
+                                }}
+                            >
+
+                                <Text style={{color: '#000', fontFamily: "SBSansDisplay", fontSize: 14}}>6М</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => {
+
+                                }}
+                                style={{
+                                    width: 30,
+                                    height: 30,
+                                    marginVertical: 10,
+                                    marginLeft: 70,
+                                    padding: 5,
+                                    justifyContent: "center",
+                                    alignItems: 'center',
+                                    backgroundColor: '#F6F6F6',
+                                    borderRadius: 8,
+                                }}
+                            >
+                                <RotateIcon/>
+                            </TouchableOpacity>
+                        </View>
+                        <View>
+                            <View style={{flexDirection: "row", justifyContent: "space-between", paddingVertical: 5}}>
+                                <Text>0 Критические</Text>
+                                <Text style={{paddingRight: 70}}>4 Важные</Text>
+                            </View>
+                            <View style={{flexDirection: "row", justifyContent: "space-between", paddingVertical: 5}}>
+                                <Text>5 Незначительные</Text>
+                                <Text>11 Информационные</Text>
+                            </View>
+                        </View>
                     </View>
                     <View style={{
                         marginHorizontal: 10,
@@ -348,6 +524,139 @@ export default function OverviewScreen() {
                             borderBottomColor: "#F1F1F1",
                             borderBottomWidth: 1
                         }}/>
+                        <View style={{marginTop: 10, flexDirection: "row"}}>
+                            <TouchableOpacity
+                                onPress={() => {
+
+                                }}
+                                style={{
+                                    width: 30,
+                                    height: 30,
+                                    margin: 10,
+                                    justifyContent: "center",
+                                    alignItems: 'center',
+                                    backgroundColor: '#343F48',
+                                    borderRadius: 8,
+                                }}
+                            >
+
+                                <Text style={{color: '#fff', fontFamily: "SBSansDisplay", fontSize: 14}}>1Ч</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => {
+
+                                }}
+                                style={{
+                                    width: 30,
+                                    height: 30,
+                                    margin: 10,
+                                    justifyContent: "center",
+                                    alignItems: 'center',
+                                    backgroundColor: '#FFFFFF',
+                                    borderRadius: 8,
+                                }}
+                            >
+
+                                <Text style={{color: '#000', fontFamily: "SBSansDisplay", fontSize: 14}}>1Д</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => {
+
+                                }}
+                                style={{
+                                    width: 30,
+                                    height: 30,
+                                    margin: 10,
+                                    justifyContent: "center",
+                                    alignItems: 'center',
+                                    backgroundColor: '#FFFFFF',
+                                    borderRadius: 8,
+                                }}
+                            >
+
+                                <Text style={{color: '#000', fontFamily: "SBSansDisplay", fontSize: 14}}>1Н</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => {
+
+                                }}
+                                style={{
+                                    width: 30,
+                                    height: 30,
+                                    margin: 10,
+                                    justifyContent: "center",
+                                    alignItems: 'center',
+                                    backgroundColor: '#FFFFFF',
+                                    borderRadius: 8,
+                                }}
+                            >
+
+                                <Text style={{color: '#000', fontFamily: "SBSansDisplay", fontSize: 14}}>1М</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => {
+
+                                }}
+                                style={{
+                                    width: 30,
+                                    height: 30,
+                                    margin: 10,
+                                    justifyContent: "center",
+                                    alignItems: 'center',
+                                    backgroundColor: '#FFFFFF',
+                                    borderRadius: 8,
+                                }}
+                            >
+
+                                <Text style={{color: '#000', fontFamily: "SBSansDisplay", fontSize: 14}}>6М</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => {
+
+                                }}
+                                style={{
+                                    width: 30,
+                                    height: 30,
+                                    marginVertical: 10,
+                                    marginLeft: 70,
+                                    padding: 5,
+                                    justifyContent: "center",
+                                    alignItems: 'center',
+                                    backgroundColor: '#F6F6F6',
+                                    borderRadius: 8,
+                                }}
+                            >
+                                <RotateIcon/>
+                            </TouchableOpacity>
+                        </View>
+                        <View>
+                            <View style={{flexDirection: "row", paddingVertical: 5}}>
+                                <Text>0,34 %</Text>
+                                <Text>Текущая средняя загрузка ЦП</Text>
+                            </View>
+                            <Divider style={{
+                                borderBottomColor: "#F1F1F1",
+                                borderBottomWidth: 1
+                            }}/>
+                            <View style={{flexDirection: "row", paddingVertical: 5, justifyContent: "space-between"}}>
+                                <Text>0,12 %</Text>
+                                <Text>ecs-872e</Text>
+                                <Text>0,3 %</Text>
+                                <Text>ecs-873e</Text>
+                            </View>
+                            <View style={{flexDirection: "row", paddingVertical: 5, justifyContent: "space-between"}}>
+                                <Text>0,6 %</Text>
+                                <Text>ecs-870e</Text>
+                                <Text>0,2 %</Text>
+                                <Text>ecs-874e</Text>
+                            </View>
+                            <View style={{flexDirection: "row", paddingVertical: 5, justifyContent: "space-between"}}>
+                                <Text>0,4 %</Text>
+                                <Text>ecs-871e</Text>
+                                <Text>0,7 %</Text>
+                                <Text>Другие</Text>
+                            </View>
+                        </View>
                     </View>
 
                     <View style={{
@@ -373,6 +682,112 @@ export default function OverviewScreen() {
                             borderBottomColor: "#F1F1F1",
                             borderBottomWidth: 1
                         }}/>
+                        <View style={{marginTop: 10, flexDirection: "row"}}>
+                            <TouchableOpacity
+                                onPress={() => {
+
+                                }}
+                                style={{
+                                    width: 30,
+                                    height: 30,
+                                    margin: 10,
+                                    justifyContent: "center",
+                                    alignItems: 'center',
+                                    backgroundColor: '#343F48',
+                                    borderRadius: 8,
+                                }}
+                            >
+
+                                <Text style={{color: '#fff', fontFamily: "SBSansDisplay", fontSize: 14}}>1Ч</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => {
+
+                                }}
+                                style={{
+                                    width: 30,
+                                    height: 30,
+                                    margin: 10,
+                                    justifyContent: "center",
+                                    alignItems: 'center',
+                                    backgroundColor: '#FFFFFF',
+                                    borderRadius: 8,
+                                }}
+                            >
+
+                                <Text style={{color: '#000', fontFamily: "SBSansDisplay", fontSize: 14}}>1Д</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => {
+
+                                }}
+                                style={{
+                                    width: 30,
+                                    height: 30,
+                                    margin: 10,
+                                    justifyContent: "center",
+                                    alignItems: 'center',
+                                    backgroundColor: '#FFFFFF',
+                                    borderRadius: 8,
+                                }}
+                            >
+
+                                <Text style={{color: '#000', fontFamily: "SBSansDisplay", fontSize: 14}}>1Н</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => {
+
+                                }}
+                                style={{
+                                    width: 30,
+                                    height: 30,
+                                    margin: 10,
+                                    justifyContent: "center",
+                                    alignItems: 'center',
+                                    backgroundColor: '#FFFFFF',
+                                    borderRadius: 8,
+                                }}
+                            >
+
+                                <Text style={{color: '#000', fontFamily: "SBSansDisplay", fontSize: 14}}>1М</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => {
+
+                                }}
+                                style={{
+                                    width: 30,
+                                    height: 30,
+                                    margin: 10,
+                                    justifyContent: "center",
+                                    alignItems: 'center',
+                                    backgroundColor: '#FFFFFF',
+                                    borderRadius: 8,
+                                }}
+                            >
+
+                                <Text style={{color: '#000', fontFamily: "SBSansDisplay", fontSize: 14}}>6М</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => {
+
+                                }}
+                                style={{
+                                    width: 30,
+                                    height: 30,
+                                    marginVertical: 10,
+                                    marginLeft: 70,
+                                    padding: 5,
+                                    justifyContent: "center",
+                                    alignItems: 'center',
+                                    backgroundColor: '#F6F6F6',
+                                    borderRadius: 8,
+                                }}
+                            >
+                                <RotateIcon/>
+                            </TouchableOpacity>
+                        </View>
+
                     </View>
 
                     <View style={{
@@ -430,50 +845,50 @@ export default function OverviewScreen() {
             </View>
         </SafeAreaView>
 
-        <View style={styles.container}>
-      {/*// todo: add search panel*/}
-      <ScreenTitle>Статистика</ScreenTitle>
-      {/*// todo: add buttons*/}
-      <Divider />
-
-      <ScreenSubtitle>Ресурсы</ScreenSubtitle>
-      <Text>
-        Ни для одного из ресурсов не сработало никаких сигналов тревоги
-      </Text>
-      <ResourceCardView
-        title={"test"}
-        isHorizontal={true}
-        resources={[
-          {
-            id: "1",
-            amount: 2,
-            alerts: 4,
-          },
-          {
-            id: "2",
-            amount: 2,
-            alerts: 4,
-          },
-          {
-            id: "3",
-            amount: 2,
-            alerts: 4,
-          },
-        ]}
-      />
-      {/*<Chart*/}
-      {/*  type={ChartTypes.line}*/}
-      {/*  height={200}*/}
-      {/*  data={{*/}
-      {/*    labels: ["1", "2", "3"],*/}
-      {/*    datasets: [*/}
-      {/*      {*/}
-      {/*        data: [1, 2, 3, 4],*/}
-      {/*      },*/}
-      {/*    ],*/}
-      {/*  }}*/}
-      {/*/>*/}
-    </View>
+        //     <View style={styles.container}>
+        //   {/*// todo: add search panel*/}
+        //   <ScreenTitle>Статистика</ScreenTitle>
+        //   {/*// todo: add buttons*/}
+        //   <Divider />
+        //
+        //   <ScreenSubtitle>Ресурсы</ScreenSubtitle>
+        //   <Text>
+        //     Ни для одного из ресурсов не сработало никаких сигналов тревоги
+        //   </Text>
+        //   <ResourceCardView
+        //     title={"test"}
+        //     isHorizontal={true}
+        //     resources={[
+        //       {
+        //         id: "1",
+        //         amount: 2,
+        //         alerts: 4,
+        //       },
+        //       {
+        //         id: "2",
+        //         amount: 2,
+        //         alerts: 4,
+        //       },
+        //       {
+        //         id: "3",
+        //         amount: 2,
+        //         alerts: 4,
+        //       },
+        //     ]}
+        //   />
+        //   {/*<Chart*/}
+        //   {/*  type={ChartTypes.line}*/}
+        //   {/*  height={200}*/}
+        //   {/*  data={{*/}
+        //   {/*    labels: ["1", "2", "3"],*/}
+        //   {/*    datasets: [*/}
+        //   {/*      {*/}
+        //   {/*        data: [1, 2, 3, 4],*/}
+        //   {/*      },*/}
+        //   {/*    ],*/}
+        //   {/*  }}*/}
+        //   {/*/>*/}
+        // </View>
     );
 }
 
@@ -520,6 +935,8 @@ const styles = StyleSheet.create({
         shadowColor: 'rgba(0,0,0,0.15)',
         shadowRadius: 9,
         shadowOpacity: 1,
-        borderRadius: 8
+        borderRadius: 8,
+        justifyContent: 'center',
+        position: 'relative'
     }
 });
