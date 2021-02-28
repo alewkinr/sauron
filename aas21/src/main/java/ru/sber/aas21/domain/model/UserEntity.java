@@ -6,6 +6,7 @@ import org.hibernate.envers.NotAudited;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -62,4 +63,8 @@ public class UserEntity extends BaseEntity<Long> {
 
     @Column(unique = true)
     private String sberId;
+
+    @NotAudited
+    @OneToMany(mappedBy = "owner")
+    private Set<PushSubscriberEntity> tokens = new HashSet<>();
 }

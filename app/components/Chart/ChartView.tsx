@@ -1,8 +1,8 @@
 import React from "react";
-import { Dimensions } from "react-native";
 import { LineChart, ProgressChart } from "react-native-chart-kit";
 import { ChartConfig } from "react-native-chart-kit/dist/HelperTypes";
 
+import { width } from "../../constants/Layout";
 import Colors from "../../constants/Colors";
 import { View } from "../Themed";
 
@@ -18,6 +18,7 @@ const initChartConfig = (props: ChartProps): ChartConfig => {
       fillShadowGradient: Colors.light.tint,
       fillShadowGradientOpacity: 0.3,
       decimalPlaces: 2,
+      strokeWidth: "1.5",
       color: () => Colors.light.tint,
       labelColor: () => Colors.light.grey,
       propsForBackgroundLines: {
@@ -25,12 +26,14 @@ const initChartConfig = (props: ChartProps): ChartConfig => {
         strokeWidth: "1",
         strokeDasharray: [],
       },
+      style: {
+        borderRadius: 1,
+      },
     },
     props.config
   );
 };
 const ChartView = function (props: ChartProps): JSX.Element {
-  // const { width } = Dimensions.get("window");
   switch (props.type) {
     case ChartTypes.line:
       return (
@@ -38,7 +41,8 @@ const ChartView = function (props: ChartProps): JSX.Element {
           <LineChart
             data={props.data.line}
             height={props.height}
-            width={80}
+            withDots={false}
+            width={width - 50}
             chartConfig={initChartConfig(props)}
             bezier
           />

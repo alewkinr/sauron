@@ -21,11 +21,11 @@ const Item = ({ amount, id, alerts }: Resource) => (
   />
 );
 
-export function ResourceCardView(props: ResourceCardProps): JSX.Element {
-  const renderItem = ({ item }) => (
-    <Item id={item.id} amount={item.amount} alerts={item.alerts} />
-  );
+const renderItem = ({ item }) => (
+  <Item id={item.id} amount={item.amount} alerts={item.alerts} />
+);
 
+export function ResourceCardView(props: ResourceCardProps): JSX.Element {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView} horizontal={true} showsHorizontalScrollIndicator={false}>
