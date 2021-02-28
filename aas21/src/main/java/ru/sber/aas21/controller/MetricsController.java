@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import ru.sber.aas21.sdk.facade.CloudEyeFacade;
 import ru.sber.aas21.sdk.model.cloudEye.metrics.Metrics;
 import ru.sber.aas21.sdk.model.cloudEye.metrics.data.MetricData;
-import ru.sber.aas21.sdk.facade.CloudEyeFacade;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -38,8 +38,12 @@ public class MetricsController {
                                                     @RequestParam("to") String to,
                                                     @RequestParam("period") String period,
                                                     @RequestParam(value = "filter", required = false) String filter) {
-        return ResponseEntity.ok(cloudEyeFacade.getMetricData(nameSpace, metricName, Integer.valueOf(dimensionIndex), dimensionName, dimensionValue,
-                LocalDateTime.parse(from, DATE_TIME_FORMATTER), LocalDateTime.parse(to, DATE_TIME_FORMATTER), Long.valueOf(period), filter));
+        MetricData result = cloudEyeFacade.getMetricData(nameSpace, metricName, Integer.valueOf(dimensionIndex), dimensionName, dimensionValue,
+                LocalDateTime.parse(from, DATE_TIME_FORMATTER), LocalDateTime.parse(to, DATE_TIME_FORMATTER), Long.valueOf(period), filter);
+        if (result.datapoints == null && result.metric_name == null) {
+            return ResponseEntity.status(204).body(result);
+        }
+        return ResponseEntity.ok(result);
     }
 
     /**
