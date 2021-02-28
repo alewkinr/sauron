@@ -52,8 +52,8 @@ function DataEnrichedChart({ metric }): JSX.Element {
       const data = await getMetrics(
         metric,
         token,
-        Date.now() - dayToMilliseconds(2),
-        Date.now() + dayToMilliseconds(1)
+        Date.now() - dayToMilliseconds(0.1),
+        Date.now()
       );
       setData({ data: data, isLoaded: true });
       console.debug(data);
@@ -1109,7 +1109,7 @@ export default function OverviewScreen() {
               }}
             />
             {/* // todo: до лучших времен */}
-            {/*<DataEnrichedChart metric={"load_average5"} />*/}
+            <DataEnrichedChart metric={"load_average5"} />
           </View>
         </ScrollView>
       </View>
