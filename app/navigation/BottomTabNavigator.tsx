@@ -26,33 +26,37 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="Статистика"
+      initialRouteName="Statistic"
       tabBarOptions={{
         activeTintColor: Colors[colorScheme].tabIconSelected,
         inactiveTintColor: Colors[colorScheme].tabIconDefault,
       }}
     >
       <BottomTab.Screen
-        name="Статистика"
+        name="Statistic"
         component={TabOneNavigator}
+
         options={{
+            tabBarLabel: "Мониторинг",
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="stats-chart" color={color} />
           ),
         }}
       />
       <BottomTab.Screen
-        name="Сервисы"
+        name="Service"
         component={TabTwoNavigator}
         options={{
+            tabBarLabel: "Сервисы",
           tabBarIcon: ({ color }) => <TabBarIcon name="grid" color={color} />,
         }}
       />
 
       <BottomTab.Screen
-        name="События"
+        name="Events"
         component={TabThreeNavigator}
         options={{
+            tabBarLabel: "События",
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="notifications" color={color} />
           ),
@@ -60,9 +64,10 @@ export default function BottomTabNavigator() {
       />
 
       <BottomTab.Screen
-        name="Поддержка"
+        name="Help"
         component={TabFourNavigator}
         options={{
+            tabBarLabel: "Поддержка",
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="help-circle" color={color} />
           ),
@@ -114,7 +119,7 @@ function TabTwoNavigator() {
       <TabTwoStack.Screen
         name="TabTwoScreen"
         component={TabTwoScreen}
-        options={{ headerTitle: "Tab Two Title" }}
+        options={{ headerShown: false }}
       />
     </TabTwoStack.Navigator>
   );
@@ -128,7 +133,7 @@ function TabThreeNavigator() {
       <TabThreeStack.Screen
         name="TabThreeScreen"
         component={TabThreeScreen}
-        options={{ headerTitle: "Tab Three Title" }}
+        options={{ headerShown: false }}
       />
     </TabThreeStack.Navigator>
   );
@@ -142,7 +147,7 @@ function TabFourNavigator() {
       <TabFourStack.Screen
         name="TabFourScreen"
         component={TabFourScreen}
-        options={{ headerTitle: "Tab Three Title" }}
+        options={{ headerShown: false }}
       />
     </TabFourStack.Navigator>
   );
@@ -156,7 +161,7 @@ function TabFiveNavigator() {
       <TabFiveStack.Screen
         name="TabFiveScreen"
         component={TabFiveScreen}
-        options={{ headerTitle: "Tab Three Title" }}
+        options={{ headerShown: false }}
       />
     </TabFiveStack.Navigator>
   );

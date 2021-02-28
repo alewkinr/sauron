@@ -46,3 +46,35 @@ export function timeConverter(unix: number): string {
     toZeroLeadFormat(sec);
   return datetime;
 }
+
+export function dateShortener(unix: number): string {
+  const a = new Date(unix);
+  const months = [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
+  ];
+  const month = months[a.getMonth()];
+  const date = a.getDate();
+  const hour = a.getHours();
+  const min = a.getMinutes();
+
+  const datetime =
+    toZeroLeadFormat(date) +
+    "." +
+    month +
+    " " +
+    toZeroLeadFormat(hour) +
+    ":" +
+    toZeroLeadFormat(min);
+  return datetime;
+}

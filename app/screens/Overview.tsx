@@ -52,8 +52,8 @@ function DataEnrichedChart({ metric }): JSX.Element {
       const data = await getMetrics(
         metric,
         token,
-        Date.now() - dayToMilliseconds(2),
-        Date.now() + dayToMilliseconds(1)
+        Date.now() - dayToMilliseconds(0.1),
+        Date.now()
       );
       setData({ data: data, isLoaded: true });
       console.debug(data);
@@ -1109,7 +1109,7 @@ export default function OverviewScreen() {
               }}
             />
             {/* // todo: до лучших времен */}
-            {/*<DataEnrichedChart metric={"load_average5"} />*/}
+            <DataEnrichedChart metric={"load_average5"} />
           </View>
         </ScrollView>
       </View>
@@ -1163,48 +1163,47 @@ export default function OverviewScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+    container: {
+        backgroundColor: '#fff'
+        // width: Dimensions.get("window").width,
+    },
+    imageStyle: {
+        ...StyleSheet.absoluteFillObject,
+        width: undefined,
+        height: undefined,
+    },
+    textInput: {
+        fontFamily: "SBSansDisplay",
+        width: "100%",
+        fontSize: 16,
+        color: "#000",
+        paddingLeft: 50,
+        paddingVertical: 7,
+        height: 53,
 
-    backgroundColor: "#fff",
-    // width: Dimensions.get("window").width,
-  },
-  imageStyle: {
-    ...StyleSheet.absoluteFillObject,
-    width: undefined,
-    height: undefined,
-  },
-  textInput: {
-    fontFamily: "SBSansDisplay",
-    width: "100%",
-    fontSize: 16,
-    color: "#000",
-    paddingLeft: 50,
-    paddingVertical: 7,
-    height: 53,
-  },
-  buttonStyle: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    position: "absolute",
-    backgroundColor: "#fff",
-    height: 53,
-    borderRadius: 8,
-  },
-  square: {
-    marginHorizontal: 7,
-    width: 120,
-    height: 120,
-    backgroundColor: "#fff",
-    elevation: 1,
-    shadowOffset: { width: 0, height: 5 },
-    shadowColor: "rgba(0,0,0,0.15)",
-    shadowRadius: 9,
-    shadowOpacity: 1,
-    borderRadius: 8,
-    justifyContent: "center",
-    position: "relative",
-  },
+    },
+    buttonStyle: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        position: "absolute",
+        backgroundColor: "#fff",
+        height: 53,
+        borderRadius: 8,
+    },
+    square: {
+        marginHorizontal: 7,
+        width: 120,
+        height: 120,
+        backgroundColor: '#fff',
+        elevation: 1,
+        shadowOffset: {width: 0, height: 5},
+        shadowColor: 'rgba(0,0,0,0.15)',
+        shadowRadius: 9,
+        shadowOpacity: 1,
+        borderRadius: 8,
+        justifyContent: 'center',
+        position: 'relative'
+    }
 });
