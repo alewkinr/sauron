@@ -1,3 +1,8 @@
+import { useReducer, useMemo } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+import { getDataCloudCPU } from "../../api/cpu-usage/requests";
+
 export enum ChartTypes {
   line,
   bar,

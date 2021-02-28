@@ -1,10 +1,11 @@
-import React from "react";
-import { Dimensions } from "react-native";
+import React, { useEffect, useReducer, useMemo } from "react";
 import { LineChart, ProgressChart } from "react-native-chart-kit";
 import { ChartConfig } from "react-native-chart-kit/dist/HelperTypes";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import Colors from "../../constants/Colors";
 import { View } from "../Themed";
+import { getDataCloudCPU } from "../../api/cpu-usage/requests";
 
 import { ChartProps, ChartTypes } from "./Chart";
 
@@ -30,7 +31,53 @@ const initChartConfig = (props: ChartProps): ChartConfig => {
   );
 };
 const ChartView = function (props: ChartProps): JSX.Element {
-  // const { width } = Dimensions.get("window");
+  // const [state, dispatch] = useReducer(
+  //   (prevState, action) => {
+  //     switch (action.type) {
+  //       case "COLLECT_DATA":
+  //         return {
+  //           ...prevState,
+  //           data: action.data,
+  //           isLoading: false,
+  //         };
+  //       case "SOMETHING":
+  //         break;
+  //     }
+  //   },
+  //   {
+  //     isLoading: false,
+  //   }
+  // );
+  //
+  // useEffect(() => {
+  //   let userToken;
+  //   try {
+  //     userToken = AsyncStorage.getItem("userToken");
+  //   } catch (e) {
+  //     console.log(`error to get token ${e}`);
+  //   }
+  //   dispatch({ type: "RESTORE_TOKEN", token: userToken });
+  // }, []);
+  //
+  // const getDataContext = useMemo(
+  //   () => ({
+  //     getMetricsData: async () => {
+  //       try {
+  //         const userToken = AsyncStorage.getItem("userToken");
+  //         const data = AsyncStorage.setItem(
+  //           "data",
+  //           await getDataCloudCPU(userToken, Date.now(), Date.now())
+  //         );
+  //         console.debug(data);
+  //         dispatch({ type: "COLLECT_DATA", data: data });
+  //       } catch (e) {
+  //         console.error(`Не удалось получить данные о метриках ${e}`);
+  //       }
+  //     },
+  //   }),
+  //   []
+  // );
+
   switch (props.type) {
     case ChartTypes.line:
       return (
