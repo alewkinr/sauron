@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Dimensions } from "react-native";
 import { LineChart, ProgressChart } from "react-native-chart-kit";
 import { ChartConfig } from "react-native-chart-kit/dist/HelperTypes";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import Colors from "../../constants/Colors";
 import { View } from "../Themed";
 
 import { ChartProps, ChartTypes } from "./Chart";
+
+useEffect(() => {
+  let userToken;
+  try {
+    userToken = AsyncStorage.getItem("userToken");
+  } catch (e) {
+    // Restoring token failed
+  }
+  // This will switch to the App screen or Auth screen and this loading
+  // screen will be unmounted and thrown away.
+  dispatch({ type: "RESTORE_TOKEN", token: userToken });
+}, []);
 
 const initChartConfig = (props: ChartProps): ChartConfig => {
   return Object.assign(

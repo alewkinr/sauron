@@ -432,8 +432,9 @@ export default function OverviewScreen() {
 
         <View style={styles.container}>
       {/*// todo: add search panel*/}
+  return (
+    <View style={styles.container}>
       <ScreenTitle>Статистика</ScreenTitle>
-      {/*// todo: add buttons*/}
       <Divider />
 
       <ScreenSubtitle>Ресурсы</ScreenSubtitle>
@@ -456,6 +457,11 @@ export default function OverviewScreen() {
           },
           {
             id: "3",
+            amount: 2,
+            alerts: 4,
+          },
+          {
+            id: "4",
             amount: 2,
             alerts: 4,
           },
