@@ -25,6 +25,7 @@ import { toLineChartDataSet } from "../utils/json-tools";
 
 function DataEnrichedChart({ metric }): JSX.Element {
   const [curState, setData] = useState({ isLoaded: false, data: null });
+  const [isLoaded, setIsLoaded] = useState(false);
 
   async function getAuthToken() {
     const resp = await fetch("http://37.230.195.199/api/users/signIn", {
@@ -38,12 +39,11 @@ function DataEnrichedChart({ metric }): JSX.Element {
         password: DEF_PASSWORD,
       }),
     });
-    const t = await resp.text();
-    return t;
+    return await resp.text();
   }
 
   useEffect(() => {
-    initData();
+    () => initData();
   });
 
   async function initData() {
@@ -56,6 +56,7 @@ function DataEnrichedChart({ metric }): JSX.Element {
         Date.now()
       );
       setData({ data: data, isLoaded: true });
+      setIsLoaded(true);
       console.debug(data);
     } catch (e) {
       console.error(`Не удалось получить данные о метриках ${e}`);
@@ -64,7 +65,7 @@ function DataEnrichedChart({ metric }): JSX.Element {
 
   return (
     <View>
-      {curState.isLoaded && (
+      {isLoaded && (
         <Chart
           type={ChartTypes.line}
           height={200}
@@ -86,34 +87,7 @@ export default function OverviewScreen() {
     <SafeAreaView>
       <View style={styles.container}>
         {/*// todo: add search panel*/}
-        <View
-          style={{
-            // padding: 20,
-            elevation: 1,
-            shadowOffset: { width: 0, height: 2 },
-            shadowColor: "rgba(0,0,0,0.05)",
-            shadowRadius: 6,
-            shadowOpacity: 1,
-            marginLeft: -5,
-            marginRight: -5,
-            marginTop: 10,
-            backgroundColor: "#fff",
-            position: "relative",
-          }}
-        >
-          <TextInput
-            style={styles.textInput}
-            placeholder="Поиск по ключевым словам"
-            value={searchField}
-            placeholderTextColor={"#C1C1C1"}
-            onChangeText={setSearchField}
-          />
-          <SearchIconSvg
-            width={18}
-            height={18}
-            style={{ position: "absolute", left: 25, top: 15 }}
-          />
-        </View>
+
         <ScreenTitle>Мониторинг</ScreenTitle>
         <View style={{ padding: 10, flexDirection: "row" }}>
           <TouchableOpacity
@@ -1163,47 +1137,46 @@ export default function OverviewScreen() {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#fff'
-        // width: Dimensions.get("window").width,
-    },
-    imageStyle: {
-        ...StyleSheet.absoluteFillObject,
-        width: undefined,
-        height: undefined,
-    },
-    textInput: {
-        fontFamily: "SBSansDisplay",
-        width: "100%",
-        fontSize: 16,
-        color: "#000",
-        paddingLeft: 50,
-        paddingVertical: 7,
-        height: 53,
-
-    },
-    buttonStyle: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-        position: "absolute",
-        backgroundColor: "#fff",
-        height: 53,
-        borderRadius: 8,
-    },
-    square: {
-        marginHorizontal: 7,
-        width: 120,
-        height: 120,
-        backgroundColor: '#fff',
-        elevation: 1,
-        shadowOffset: {width: 0, height: 5},
-        shadowColor: 'rgba(0,0,0,0.15)',
-        shadowRadius: 9,
-        shadowOpacity: 1,
-        borderRadius: 8,
-        justifyContent: 'center',
-        position: 'relative'
-    }
+  container: {
+    backgroundColor: "#fff",
+    // width: Dimensions.get("window").width,
+  },
+  imageStyle: {
+    ...StyleSheet.absoluteFillObject,
+    width: undefined,
+    height: undefined,
+  },
+  textInput: {
+    fontFamily: "SBSansDisplay",
+    width: "100%",
+    fontSize: 16,
+    color: "#000",
+    paddingLeft: 50,
+    paddingVertical: 7,
+    height: 53,
+  },
+  buttonStyle: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    position: "absolute",
+    backgroundColor: "#fff",
+    height: 53,
+    borderRadius: 8,
+  },
+  square: {
+    marginHorizontal: 7,
+    width: 120,
+    height: 120,
+    backgroundColor: "#fff",
+    elevation: 1,
+    shadowOffset: { width: 0, height: 5 },
+    shadowColor: "rgba(0,0,0,0.15)",
+    shadowRadius: 9,
+    shadowOpacity: 1,
+    borderRadius: 8,
+    justifyContent: "center",
+    position: "relative",
+  },
 });
