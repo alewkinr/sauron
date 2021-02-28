@@ -1,8 +1,7 @@
-import { useReducer, useMemo }  from "react";
-import AsyncStorage             from "@react-native-async-storage/async-storage";
-import {getDataByMetricsName}   from "../../api/metrics-data/requests"
-import {GetMetricsDataContract} from "../../api/metrics-data/contracts"
-import {err}                    from "react-native-svg/lib/typescript/xml";
+import { useReducer, useMemo } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+import { getDataCloudCPU } from "../../api/cpu-usage/requests";
 
 export enum ChartTypes {
   line,
@@ -60,47 +59,3 @@ export interface ChartState {
 }
 
 export type ChartProps = ChartState;
-
-const [state, dispatch] = useReducer(
-  (prevState, action) => {
-    switch (action.type) {
-      case "COLLECT_DATA":
-        return {
-          ...prevState,
-          data: action.data,
-          isLoading: false,
-        };
-      case "SOMETHING":
-        break;
-    }
-  },
-  {
-    isLoading: false,
-  }
-);
-
-const getDataContext = useMemo(
-  () => ({
-    getMetricsData: async () => {
-      const query = {
-        nameSpace: string;
-        metricName: string;
-        dimensionName: string;
-        dimensionValue: string;
-        from: string;
-        to: string;
-        period: string;
-        filter: string;
-      } as GetMetricsDataContract
-      try {
-        const userToken = AsyncStorage.getItem("userToken");
-        const data = AsyncStorage.setItem("data", await getDataByMetricsName(userToken, query));
-        console.debug(data)
-        dispatch({ type: "COLLECT_DATA", data: data });
-      } catch (e) {
-        console.error(`Не удалось получить данные о метриках ${e}`)
-      }
-    },
-  }),
-  []
-);

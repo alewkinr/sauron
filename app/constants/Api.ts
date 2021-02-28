@@ -1,4 +1,6 @@
 export const BACKEND_BASE_URL = "http://37.230.195.199";
+export const DEF_USERNAME = "user";
+export const DEF_PASSWORD = "user";
 
 export const NAMESPACE_ELASTIC_CLOUD_SERVER = "SYS.ECS";
 export const NAMESPACE_ELASTIC_CLOUD_SERVER_WITH_AGENT = "AGT.ECS";
