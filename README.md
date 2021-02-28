@@ -43,4 +43,4 @@
 - [Дизайн мобильного приложения](https://www.figma.com/file/gtmhuwNfVkmmyQeQomsg84/SberCode-Cloud?node-id=54%3A2)
 - [Прочие дополнительные материалы: идеи и предложения по развитию продукта, изученные при создания решения материалы и т.д.](https://drive.google.com/drive/folders/1n5OXtiMhfHI8PhwQzwXbOXPMUxQuD55-?usp=sharing)
 - QR-кодом ниже можно установить приложение из программы [Expo Go](https://play.google.com/store/apps/details?id=host.exp.exponent)
-! [QR-код](https://i.ibb.co/fpN1pB8/dev.png)
+![QR-код](app.jpg)
