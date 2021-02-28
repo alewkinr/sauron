@@ -11,6 +11,8 @@
 
 Библиотеки: expo-push-sdk, sber-java-sdk (сделали удобную обвязку поверх предоставленного sdk чтобы работать с объектной моделью), bouncycastle(использовали один из самых безопасных хэшей для пароль argon2), projectlombok, modelmapper, jjwt, guava, OAS 3.0 (Swagger doc from code).
 
+У нас есть рабочая MVP-версия (минимально работоспособная версия продукта), в виде приложения, которое обладает как удобным интерфейсом, так и достаточным функционалом, чтобы продемонстрировать основные аспекты решения задачи кейса. Приложение можно установить по [ссылке](exp://2v-jjk.anonymous.app.exp.direct:80) в программе [Expo Go](https://play.google.com/store/apps/details?id=host.exp.exponent), т.к. за время хакатона выложить и пройти модерацию отдельного приложения в Google Play и AppStore не представляется возможным.
+
 Спасибо организаторам за интересную задачу, мы будем рады продолжить сотрудничество!
 
 # Техническое описание проекта
@@ -35,8 +37,13 @@
 
 # Дополнительные материалы
 
-- [**Прототип проекта, т.е. рабочая MVP-версия (минимально работоспособная версия продукта)**](https://...web.app/).
+- [**Прототип проекта, т.е. рабочая MVP-версия (минимально работоспособная версия продукта)** по ссылке](exp://2v-jjk.anonymous.app.exp.direct:80) в программе `Expo`, т.к. за время хакатона выложить и пройти модерацию отдельного приложения в Google Play и AppStore не представляется возможным.
 - [Предварительная дорожная карта и смета](https://docs.google.com/spreadsheets/d/1fD8Nbg0GgytnopRfruiP9mdH5-zc9i5XvJstZvNjObU/edit?usp=sharing) общих затрат по разработке и внедрению на архитектуре заказчика для пилотной версии проекта.
 - [Схематичный UX](https://www.figma.com/file/gtmhuwNfVkmmyQeQomsg84/SberCode-Cloud?node-id=0%3A1)
 - [Дизайн мобильного приложения](https://www.figma.com/file/gtmhuwNfVkmmyQeQomsg84/SberCode-Cloud?node-id=54%3A2)
 - [Прочие дополнительные материалы: идеи и предложения по развитию продукта, изученные при создания решения материалы и т.д.](https://drive.google.com/drive/folders/1n5OXtiMhfHI8PhwQzwXbOXPMUxQuD55-?usp=sharing)
+- QR-кодом ниже можно установить приложение из программы [Expo Go](https://play.google.com/store/apps/details?id=host.exp.exponent)
+
+
+
+![QR-код](app.jpg)
