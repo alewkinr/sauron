@@ -8,6 +8,8 @@ import SearchIconSvg from "../components/SearchIconSvg";
 import useCachedResources from "../hooks/useCachedResources";
 import {LinearGradient} from "expo-linear-gradient";
 import Divider from "../components/Divider";
+import { ResourceCardView } from "../components/ResourceCard/ResourceCardView";
+import { Chart, ChartTypes } from "../components/Chart/index";
 import FilterIconSvg from "../components/FilterIconSvg";
 import SettingsIcon from "../components/SettingsIcon";
 
@@ -427,6 +429,51 @@ export default function OverviewScreen() {
 
             </View>
         </SafeAreaView>
+
+        <View style={styles.container}>
+      {/*// todo: add search panel*/}
+      <ScreenTitle>Статистика</ScreenTitle>
+      {/*// todo: add buttons*/}
+      <Divider />
+
+      <ScreenSubtitle>Ресурсы</ScreenSubtitle>
+      <Text>
+        Ни для одного из ресурсов не сработало никаких сигналов тревоги
+      </Text>
+      <ResourceCardView
+        title={"test"}
+        isHorizontal={true}
+        resources={[
+          {
+            id: "1",
+            amount: 2,
+            alerts: 4,
+          },
+          {
+            id: "2",
+            amount: 2,
+            alerts: 4,
+          },
+          {
+            id: "3",
+            amount: 2,
+            alerts: 4,
+          },
+        ]}
+      />
+      {/*<Chart*/}
+      {/*  type={ChartTypes.line}*/}
+      {/*  height={200}*/}
+      {/*  data={{*/}
+      {/*    labels: ["1", "2", "3"],*/}
+      {/*    datasets: [*/}
+      {/*      {*/}
+      {/*        data: [1, 2, 3, 4],*/}
+      {/*      },*/}
+      {/*    ],*/}
+      {/*  }}*/}
+      {/*/>*/}
+    </View>
     );
 }
 
