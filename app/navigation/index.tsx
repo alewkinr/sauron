@@ -55,15 +55,18 @@ export default function Navigation({
   );
 
   useEffect(() => {
-    let userToken;
-    try {
-      userToken = AsyncStorage.getItem("userToken");
-    } catch (e) {
-      // Restoring token failed
-    }
-    // This will switch to the App screen or Auth screen and this loading
-    // screen will be unmounted and thrown away.
-    dispatch({ type: "RESTORE_TOKEN", token: userToken });
+    const bootstrapp = async () => {
+      let userToken;
+      try {
+        userToken = AsyncStorage.getItem("userToken");
+      } catch (e) {
+        // Restoring token failed
+      }
+      // This will switch to the App screen or Auth screen and this loading
+      // screen will be unmounted and thrown away.
+      dispatch({ type: "RESTORE_TOKEN", token: userToken });
+    };
+    bootstrapp();
   }, []);
 
   const authContext = useMemo(
