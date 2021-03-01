@@ -12,7 +12,7 @@ export interface GetMetricsDataContract {
 
 export interface ResponseMetricsData {
   min: number;
-  ts: number;
+  timestamp: number;
   unit: string;
 }
 export interface ResponseMetrics {

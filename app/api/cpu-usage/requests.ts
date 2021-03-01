@@ -11,7 +11,7 @@ import {
 } from "../../constants/Api";
 import { timeConverter } from "../../utils/time-tools";
 
-import { GetMetricsDataContract, ResponseMetrics } from "./contracts";
+import { GetMetricsDataContract } from "./contracts";
 
 const getDataByMetricsName = async (
   accessToken: string,
